@@ -3,6 +3,8 @@ module com.example.wickedbet {
     requires javafx.fxml;
 
 
-    opens com.example.wickedbet to javafx.fxml;
-    exports com.example.wickedbet;
+    opens wickedbet to javafx.fxml;
+    exports wickedbet;
+    exports wickedbet.controllers;
+    opens wickedbet.controllers to javafx.fxml;
 }
