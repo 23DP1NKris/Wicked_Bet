@@ -10,18 +10,17 @@
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #526D82;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
       <Button layoutX="351.0" layoutY="559.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="319.0" style="-fx-background-color: #27374D;" text="Log In" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="30.0" />
          </font>
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#27374d" height="118.0" layoutX="-3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1027.0" />
-      <ImageView fitHeight="129.0" fitWidth="126.0" layoutX="7.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image%202.png"/>
-         </image>
-      </ImageView>
+<!--      <ImageView fitHeight="129.0" fitWidth="126.0" layoutX="7.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@image%202.png"/>-->
+<!--         </image>-->
+<!--      </ImageView>-->
       <Text fill="#eeeeee" layoutX="310.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wicked Bet" wrappingWidth="444.46728515625">
          <font>
             <Font name="Arial Bold" size="71.0" />
@@ -49,5 +48,4 @@
             <Font name="Arial Bold" size="26.0" />
          </font>
       </Button>
-   </children>
 </AnchorPane>
