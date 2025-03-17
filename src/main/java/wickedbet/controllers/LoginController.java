@@ -1,43 +1,25 @@
 package wickedbet.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.PasswordField;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.util.Objects;
 
-public class LoginController implements Initializable {
 
-    @FXML
-    private TextField username;
-    @FXML
-    private PasswordField password;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private Button registerText;
-
-    public LoginController(TextField username) {
-        this.username = username;
-        this.password = new PasswordField();
-    }
+public class LoginController{
 
     @FXML
-    private void loginButtonAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void registerTextAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public void switchToRegister(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("register.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
