@@ -40,7 +40,7 @@
             <Font name="Arial" size="26.0" />
          </font>
       </Text>
-      <Button layoutX="511.0" layoutY="684.0" mnemonicParsing="false" onMouseClicked="#switchToRegister" prefHeight="48.0" prefWidth="296.0" style="-fx-background-color: #526D82;" text="Register an Account" textFill="#dde6ed">
+      <Button layoutX="511.0" layoutY="684.0" mnemonicParsing="false" onAction="#switchToRegister" prefHeight="48.0" prefWidth="296.0" style="-fx-background-color: #526D82;" text="Register an Account" textFill="#dde6ed">
          <font>
             <Font name="Arial Bold" size="26.0" />
          </font>
