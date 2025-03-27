@@ -1,11 +1,12 @@
 module com.example.wickedbet {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.desktop;
+    requires com.google.gson;
 
+    opens wickedbet.models to com.google.gson, javafx.fxml;
+    opens wickedbet.controllers to javafx.fxml;
 
-    opens wickedbet to javafx.fxml;
     exports wickedbet;
     exports wickedbet.controllers;
-    opens wickedbet.controllers to javafx.fxml;
+    exports wickedbet.services;
 }
