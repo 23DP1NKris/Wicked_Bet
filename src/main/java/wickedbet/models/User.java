@@ -9,11 +9,11 @@ public class User {
     private double biggestWin;
     private LocalDate lastLoginDate;
 
-    private User(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.biggestBet = biggestBet;
-        this.biggestWin = biggestWin;
+        this.biggestBet = 0.0;
+        this.biggestWin = 0.0;
         this.lastLoginDate = LocalDate.now();
     }
 
