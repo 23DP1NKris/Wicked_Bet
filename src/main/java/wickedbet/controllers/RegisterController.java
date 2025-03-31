@@ -19,18 +19,14 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class RegisterController implements Initializable {
+public class RegisterController {
     @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
 
     private final RegisterService registerService = new RegisterService();
-    private static User registeredUser;
 
-    public static User getRegisteredUser() {
-        return registeredUser;
-    }
 
     public void switchToLogin(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/javafx/login.fxml")));
@@ -44,19 +40,11 @@ public class RegisterController implements Initializable {
         String password = passwordField.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
-            System.out.println("Username and password cannot be empty.");
+            System.out.println("Username and password cannot be empty."); // change to javafx alert
             return;
         }
 
         User registeredUser = new User(username, password);
         registerService.registerUser(registeredUser);
-
-        System.out.println("Username: " + registeredUser.getUsername() + "\n" + "Password: " + registeredUser.getPassword());
-    }
-
-    @FXML
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

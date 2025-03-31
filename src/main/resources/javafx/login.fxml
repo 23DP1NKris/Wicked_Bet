@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="650.0" style="-fx-background-color: #526D82;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wickedbet.controllers.LoginController">
-      <Button layoutX="165.0" layoutY="406.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="319.0" style="-fx-background-color: #27374D;" text="Log In" textFill="WHITE">
+      <Button fx:id="loginButton" layoutX="165.0" layoutY="406.0" mnemonicParsing="false" onAction="#login" prefHeight="75.0" prefWidth="319.0" style="-fx-background-color: #27374D;" text="Log In" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="30.0" />
          </font>
@@ -47,12 +47,12 @@
             <Font name="Arial Bold" size="26.0" />
          </font>
       </Button>
-   <TextField layoutX="122.0" layoutY="198.0" prefHeight="64.0" prefWidth="406.0" style="-fx-padding: 5;">
+   <TextField fx:id="usernameField" layoutX="122.0" layoutY="198.0" prefHeight="64.0" prefWidth="406.0" style="-fx-padding: 5;">
       <font>
          <Font name="Arial" size="30.0" />
       </font>
    </TextField>
-   <PasswordField layoutX="122.0" layoutY="305.0" prefHeight="65.0" prefWidth="406.0">
+   <PasswordField fx:id="passwordField" layoutX="122.0" layoutY="305.0" prefHeight="65.0" prefWidth="406.0">
       <font>
          <Font size="24.0" />
       </font>
