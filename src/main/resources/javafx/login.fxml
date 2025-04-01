@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="650.0" style="-fx-background-color: #526D82;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wickedbet.controllers.LoginController">
-      <Button fx:id="loginButton" layoutX="165.0" layoutY="406.0" mnemonicParsing="false" onAction="#login" prefHeight="75.0" prefWidth="319.0" style="-fx-background-color: #27374D;" text="Log In" textFill="WHITE">
+      <Button layoutX="165.0" layoutY="406.0" mnemonicParsing="false" onAction="#login" prefHeight="75.0" prefWidth="319.0" style="-fx-background-color: #27374D;" text="Log In" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="30.0" />
          </font>

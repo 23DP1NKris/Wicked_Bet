@@ -2,8 +2,6 @@ package wickedbet.services;
 
 import wickedbet.models.User;
 
-import java.util.List;
-
 public class RegisterService {
         private final JsonService jsonService = new JsonService();
 
