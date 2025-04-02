@@ -7,14 +7,14 @@ public class User {
     private String password;
     private double biggestBet;
     private double biggestWin;
-    private LocalDate lastLoginDate;
+    private LocalDate previousLoginDate;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         this.biggestBet = 0.0;
         this.biggestWin = 0.0;
-        this.lastLoginDate = LocalDate.now();
+        this.previousLoginDate = LocalDate.now();
     }
 
     public String getUsername() {
@@ -33,11 +33,11 @@ public class User {
         return biggestWin;
     }
 
-    public LocalDate getLastLoginDate() {
-        return lastLoginDate;
+    public LocalDate getPreviousLoginDate() {
+        return previousLoginDate;
     }
 
-    public void updateLastLoginDate() {
-        this.lastLoginDate = LocalDate.now();
+    public void updatePreviousLoginDate() {
+        this.previousLoginDate = LocalDate.now();
     }
 }
