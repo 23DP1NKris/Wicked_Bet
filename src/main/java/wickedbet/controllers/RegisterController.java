@@ -33,15 +33,12 @@ public class RegisterController {
     }
 
     public void register(ActionEvent event) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText().trim();
 
-        if (username.isEmpty() || password.isEmpty()) {
-            System.out.println("Username and password cannot be empty."); // change to javafx alert
-            return;
+        if (registerService.validationCheck(username, password)) {
+            User registeredUser = new User(username, password);
+            registerService.registerUser(registeredUser);
         }
-
-        User registeredUser = new User(username, password);
-        registerService.registerUser(registeredUser);
     }
 }
