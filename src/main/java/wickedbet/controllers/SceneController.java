@@ -11,19 +11,19 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class SceneController {
-    public void switchToLogin(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/javafx/login.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
 
-    public void switchToRegister(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/javafx/register.fxml")));
+    private void switchScene(String fxmlFile, ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/javafx/"+fxmlFile)));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
+    public void switchToLogin(ActionEvent event) throws IOException {
+        switchScene("login.fxml", event);
+    }
 
+    public void switchToRegister(ActionEvent event) throws IOException {
+        switchScene("register.fxml", event);
+    }
 }
