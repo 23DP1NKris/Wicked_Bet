@@ -4,7 +4,7 @@ import wickedbet.models.User;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class ValidRegistrationService {
+public class ValidInputService {
     private final JsonService jsonService = new JsonService();
 
     public static boolean validInputs(String username, String password) {

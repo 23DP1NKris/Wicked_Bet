@@ -17,7 +17,7 @@ public class LoginService {
             }
         }
 
-        System.out.println("Invalid username or password."); // Update this to show a JavaFX alert later
+        System.out.println("Invalid username or password.");
         return false;
     }
 

@@ -5,7 +5,7 @@ import wickedbet.models.User;
 
 public class RegisterService {
     private final JsonService jsonService = new JsonService();
-    private final ValidRegistrationService validRegistrationService = new ValidRegistrationService();
+    private final ValidInputService validInputService = new ValidInputService();
     private final UserAlerts registerAlerts = new UserAlerts();
 
     public void registerUser(User user) {
@@ -14,23 +14,23 @@ public class RegisterService {
     }
 
     public boolean validationCheck(String username, String password) {
-        if (validRegistrationService.emptyInputs(username, password)) {
+        if (validInputService.emptyInputs(username, password)) {
             registerAlerts.showAlert("Invalid input", "Username or password fields cannot be empty!");
             return false;
         }
 
-        if (ValidRegistrationService.validInputs(username, password)) {
+        if (ValidInputService.validInputs(username, password)) {
             registerAlerts.showAlert("Invalid input", "Username cannot contain any special characters!" +
                                         "\nThe password can only contain ! @ # $ &.");
             return false;
         }
 
-        if (validRegistrationService.userExists(username)) {
+        if (validInputService.userExists(username)) {
             registerAlerts.showAlert("Invalid username", "Username is already taken!");
             return false;
         }
 
-        if (validRegistrationService.passwordLength(password)) {
+        if (validInputService.passwordLength(password)) {
             registerAlerts.showAlert("Invalid password", "Password should be at least 6 characters long!");
             return false;
         }
