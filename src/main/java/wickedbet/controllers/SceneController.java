@@ -16,6 +16,8 @@ public class SceneController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/javafx/"+fxmlFile)));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
+        stage.sizeToScene();
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -25,5 +27,9 @@ public class SceneController {
 
     public void switchToRegister(ActionEvent event) throws IOException {
         switchScene("register.fxml", event);
+    }
+
+    public void switchToMenu(ActionEvent event) throws IOException {
+        switchScene("menu.fxml", event);
     }
 }
