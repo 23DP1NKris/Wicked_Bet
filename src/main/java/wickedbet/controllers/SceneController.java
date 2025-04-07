@@ -32,4 +32,16 @@ public class SceneController {
     public void switchToMenu(ActionEvent event) throws IOException {
         switchScene("menu.fxml", event);
     }
+
+    public void switchToSlots(ActionEvent event) throws IOException {
+        switchScene("slots.fxml", event);
+    }
+
+    public void switchToStatistics(ActionEvent event) throws IOException {
+        switchScene("statistics.fxml", event);
+    }
+
+    public void switchToLeaderboard(ActionEvent event) throws IOException {
+        switchScene("leaderboard.fxml", event);
+    }
 }

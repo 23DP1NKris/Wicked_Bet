@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #526D82;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wickedbet.controllers.MenuController">
+   <children>
+      <Button alignment="CENTER" layoutX="15.0" layoutY="16.0" mnemonicParsing="false" onAction="#logOut" prefHeight="43.0" prefWidth="131.0" style="-fx-background-color: transparent;" text="Log out" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" layoutX="262.0" layoutY="348.0" mnemonicParsing="false" onAction="#switchToSlots" prefHeight="126.0" prefWidth="500.0" style="-fx-background-color: #27374D;" text="Play slots!">
+         <font>
+            <Font name="Arial Bold" size="64.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.9218106994933359" endY="0.43209879491778025" startX="0.9045781868475454" startY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.5584291219711304" green="0.5584291219711304" blue="0.5584291219711304" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8863552304225512">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button alignment="CENTER" layoutX="392.0" layoutY="607.0" mnemonicParsing="false" onAction="#switchToLeaderboard" opacity="0.7" style="-fx-background-color: #27375F;" text="Leaderboards" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="256.0" fitWidth="256.0" layoutX="383.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icon.png" />
+         </image>
+      </ImageView>
+      <Button alignment="CENTER" layoutX="388.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToStatistics" opacity="0.7" style="-fx-background-color: #27375F;" text="Your statistics" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

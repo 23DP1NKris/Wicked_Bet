@@ -9,7 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class RegisterController {
     @FXML
@@ -18,7 +17,6 @@ public class RegisterController {
     private PasswordField passwordField;
 
     private final RegisterService registerService = new RegisterService();
-
     private final SceneController sceneController = new SceneController();
 
     public void switchToLogin(ActionEvent event) throws IOException {
@@ -33,7 +31,7 @@ public class RegisterController {
             User registeredUser = new User(username, password);
             registerService.registerUser(registeredUser);
 
-            sceneController.switchToLogin(event);
+            sceneController.switchToMenu(event);
         }
     }
 }
