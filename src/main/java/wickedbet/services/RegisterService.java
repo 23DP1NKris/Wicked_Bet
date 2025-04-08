@@ -10,7 +10,6 @@ public class RegisterService {
 
     public void registerUser(User user) {
         jsonService.saveUser(user);
-        System.out.println("User registered successfully: " + user.getUsername());
     }
 
     public boolean validationCheck(String username, String password) {

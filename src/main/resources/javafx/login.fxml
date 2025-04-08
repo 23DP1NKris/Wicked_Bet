@@ -15,11 +15,6 @@
          </font>
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#27374d" height="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="650.0" />
-<!--      <ImageView fitHeight="129.0" fitWidth="126.0" layoutX="7.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">-->
-<!--         <image>-->
-<!--            <Image url="@image%202.png"/>-->
-<!--         </image>-->
-<!--      </ImageView>-->
       <Text fill="#eeeeee" layoutX="135.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wicked Bet" wrappingWidth="444.46728515625">
          <font>
             <Font name="Arial Bold" size="71.0" />
