@@ -1,4 +1,4 @@
-package wickedbet.controllers;
+package wickedbet.utils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SceneController {
+public class SceneManager {
 
     private void switchScene(String fxmlFile, ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/javafx/"+fxmlFile)));

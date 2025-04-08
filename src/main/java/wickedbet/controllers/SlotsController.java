@@ -1,13 +1,14 @@
 package wickedbet.controllers;
 
 import javafx.event.ActionEvent;
+import wickedbet.utils.SceneManager;
 
 import java.io.IOException;
 
 public class SlotsController {
-    private final SceneController sceneController = new SceneController();
+    private final SceneManager sceneManager = new SceneManager();
 
     public void goBack(ActionEvent event) throws IOException {
-        sceneController.switchToMenu(event);
+        sceneManager.switchToMenu(event);
     }
 }

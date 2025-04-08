@@ -9,4 +9,6 @@ module com.example.wickedbet {
     exports wickedbet;
     exports wickedbet.controllers;
     exports wickedbet.services;
+    exports wickedbet.utils;
+    opens wickedbet.utils to javafx.fxml;
 }

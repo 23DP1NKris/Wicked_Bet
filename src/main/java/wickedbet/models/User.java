@@ -54,5 +54,4 @@ public class User {
     public LocalDate getRegistrationDate() {
         return registrationDate;
     }
-
 }

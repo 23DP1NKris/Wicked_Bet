@@ -1,25 +1,26 @@
 package wickedbet.controllers;
 
 import javafx.event.ActionEvent;
+import wickedbet.utils.SceneManager;
 
 import java.io.IOException;
 
 public class MenuController {
-    private final SceneController sceneController = new SceneController();
+    private final SceneManager sceneManager = new SceneManager();
 
     public void logOut(ActionEvent event) throws IOException {
-        sceneController.switchToLogin(event);
+        sceneManager.switchToLogin(event);
     }
 
     public void switchToSlots(ActionEvent event) throws IOException {
-        sceneController.switchToSlots(event);
+        sceneManager.switchToSlots(event);
     }
 
     public void switchToStatistics(ActionEvent event) throws IOException {
-        sceneController.switchToStatistics(event);
+        sceneManager.switchToStatistics(event);
     }
 
     public void switchToLeaderboard(ActionEvent event) throws IOException {
-        sceneController.switchToLeaderboard(event);
+        sceneManager.switchToLeaderboard(event);
     }
 }

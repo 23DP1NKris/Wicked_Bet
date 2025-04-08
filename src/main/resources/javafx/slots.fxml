@@ -39,6 +39,11 @@
             <Font name="Arial Bold" size="28.0" />
          </font>
       </Label>
-      <Circle fill="DODGERBLUE" layoutX="929.0" layoutY="690.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="WHITE" layoutX="929.0" layoutY="690.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Text layoutX="890.0" layoutY="702.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spin">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
