@@ -11,4 +11,5 @@ module com.example.wickedbet {
     exports wickedbet.services;
     exports wickedbet.utils;
     opens wickedbet.utils to javafx.fxml;
+    opens wickedbet.services to javafx.fxml;
 }

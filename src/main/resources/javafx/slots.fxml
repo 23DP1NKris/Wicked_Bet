@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,18 +14,21 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #526D82;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wickedbet.controllers.SlotsController">
    <children>
-      <Button alignment="CENTER" layoutX="6.0" layoutY="16.0" mnemonicParsing="false" onAction="#goBack" prefHeight="43.0" prefWidth="131.0" style="-fx-background-color: transparent;" text="Back" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="19.0" layoutY="18.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: transparent;" text="Back" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3b5e79" height="500.0" layoutX="220.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3b5e79" height="510.0" layoutX="244.0" layoutY="104.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="553.0" />
       <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="896.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/icon.png" />
          </image>
       </ImageView>
-      <Text fill="#ffffff" layoutX="235.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wicked Spin" textAlignment="CENTER">
+      <Text fill="#ffffff" layoutX="235.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wicked Spin" textAlignment="CENTER">
          <font>
             <Font name="Arial Bold" size="96.0" />
          </font>
@@ -39,11 +44,97 @@
             <Font name="Arial Bold" size="28.0" />
          </font>
       </Label>
-      <Circle fill="WHITE" layoutX="929.0" layoutY="690.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Text layoutX="890.0" layoutY="702.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spin">
+      <Circle fill="WHITE" layoutX="929.0" layoutY="690.0" radius="75.0" stroke="#526d82" strokeType="INSIDE" strokeWidth="5.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Circle>
+      <Button layoutX="26.0" layoutY="282.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="163.0" style="-fx-background-color: white;" text="Buy spins!" textAlignment="CENTER">
          <font>
-            <Font name="Arial Bold" size="36.0" />
+            <Font name="Arial Bold" size="24.0" />
          </font>
-      </Text>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="26.0" layoutY="630.0" text="Balance: 123.00 €" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="653.0" text="Bet:                     € " textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="betAmount" alignment="TOP_RIGHT" layoutX="64.0" layoutY="643.0" prefHeight="43.0" prefWidth="188.0" style="-fx-background-color: transpaent; -fx-text-fill: white;" text="0.01">
+         <font>
+            <Font name="Arial Bold" size="28.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <Button fx:id="changeBetButton" layoutX="170.0" layoutY="688.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Change bet">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="slot_1" fitHeight="150.0" fitWidth="150.0" layoutX="287.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_a.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_2" fitHeight="150.0" fitWidth="150.0" layoutX="447.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_broom.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_3" fitHeight="150.0" fitWidth="150.0" layoutX="606.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_candy.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_4" fitHeight="150.0" fitWidth="150.0" layoutX="287.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_eye.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_5" fitHeight="150.0" fitWidth="150.0" layoutX="447.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_free.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_6" fitHeight="150.0" fitWidth="150.0" layoutX="606.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_horseshoe.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_9" fitHeight="150.0" fitWidth="150.0" layoutX="606.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_pot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_8" fitHeight="150.0" fitWidth="150.0" layoutX="447.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_witch.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_7" fitHeight="150.0" fitWidth="150.0" layoutX="287.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_k.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="854.0" layoutY="612.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Spin" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
