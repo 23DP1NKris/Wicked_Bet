@@ -7,20 +7,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="650.0" style="-fx-background-color: #526D82;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wickedbet.controllers.StartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="650.0" style="-fx-background-color: #2a4a40;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wickedbet.controllers.StartController">
    <children>
-      <Rectangle fill="#9db2bf" height="431.0" layoutX="57.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="537.0" />
-      <Text fill="WHITE" layoutX="117.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wicked Bet" textAlignment="CENTER" wrappingWidth="417.46728515625">
+      <Rectangle fill="#1a3a30" height="431.0" layoutX="57.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="537.0" />
+      <Text fill="#d4af37" layoutX="117.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wicked Bet" textAlignment="CENTER" wrappingWidth="417.46728515625">
          <font>
             <Font name="System Bold" size="72.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="174.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You must be 18 or older to access this content. By clicking ‘Enter’ you confirm that you are at least 18 years old." textAlignment="CENTER" wrappingWidth="302.3916473388672">
+      <Text fill="#d4af37" layoutX="174.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You must be 18 or older to access this content. By clicking ‘Enter’ you confirm that you are at least 18 years old." textAlignment="CENTER" wrappingWidth="302.3916473388672">
          <font>
             <Font name="Arial" size="26.0" />
          </font>
       </Text>
-      <Button layoutX="126.0" layoutY="381.0" mnemonicParsing="false" onAction="#exit" prefHeight="68.0" prefWidth="174.0" style="-fx-background-color: #526D82;" text="I am under 18 - Exit" textFill="WHITE">
+      <Button layoutX="126.0" layoutY="381.0" mnemonicParsing="false" onAction="#exit" prefHeight="68.0" prefWidth="174.0" style="-fx-background-color: #0a291f;" text="I am under 18 - Exit" textFill="#d4af37">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -28,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="350.0" layoutY="381.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="68.0" prefWidth="174.0" style="-fx-background-color: white;" text="I am 18 or over - Enter" textFill="#526d82">
+      <Button layoutX="350.0" layoutY="381.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="68.0" prefWidth="174.0" style="-fx-background-color: #2a4a40;" text="I am 18 or over - Enter" textFill="#d4af37">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
