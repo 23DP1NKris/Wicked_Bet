@@ -6,6 +6,7 @@ public class User {
     private String username;
     private String password;
     private double balance;
+    private int remainingSpins;
     private double biggestBet;
     private double biggestWin;
     private final LocalDate registrationDate;
@@ -14,6 +15,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.balance = 0.0;
+        this.remainingSpins = 0;
         this.biggestBet = 0.0;
         this.biggestWin = 0.0;
         this.registrationDate = LocalDate.now();
@@ -35,8 +37,20 @@ public class User {
         this.balance = balance;
     }
 
+    public void addBalance(double addedBalance) {
+        this.balance += addedBalance;
+    }
+
     public double getBiggestBet() {
         return biggestBet;
+    }
+
+    public int getRemainingSpins() {
+        return remainingSpins;
+    }
+
+    public void setRemainingSpins(int remainingSpins) {
+        this.remainingSpins = remainingSpins;
     }
 
     public void setBiggestBet(double biggestBet) {

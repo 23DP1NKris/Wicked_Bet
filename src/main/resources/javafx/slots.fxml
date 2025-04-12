@@ -34,14 +34,14 @@
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a3a30" height="160.0" layoutY="610.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1024.0" />
-      <Label layoutX="362.0" layoutY="625.0" text="Won: 123123.00 €" textAlignment="CENTER" textFill="#d4af37">
+      <Label alignment="CENTER" layoutX="362.0" layoutY="625.0" prefHeight="43.0" prefWidth="316.0" text="Won: 0.00 €" textAlignment="CENTER" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="378.0" layoutY="665.0" text="Remaining Spins: 8" textAlignment="CENTER" textFill="#d4af37">
+      <Label alignment="CENTER" layoutX="378.0" layoutY="665.0" prefHeight="32.0" prefWidth="271.0" text="Free Spins: 10" textAlignment="CENTER" textFill="#d4af37">
          <font>
-            <Font name="Arial Bold" size="28.0" />
+            <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
       <Circle fill="#2a4a40" layoutX="929.0" layoutY="690.0" radius="75.0" stroke="#526d82" strokeType="INSIDE" strokeWidth="5.0">
@@ -49,7 +49,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Circle>
-      <Button layoutX="26.0" layoutY="282.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="163.0" style="-fx-background-color: #1a3a30;" text="Buy spins!" textAlignment="CENTER" textFill="#d4af37">
+      <Button layoutX="41.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToAddBalance" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: #1a3a30;" text="Top up your balance!" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -57,17 +57,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="26.0" layoutY="630.0" text="Balance: 123.00 €" textAlignment="CENTER" textFill="#d4af37">
+      <Label fx:id="balanceLabel" layoutX="26.0" layoutY="630.0" prefHeight="32.0" prefWidth="291.0" text="Balance: 0.00" textAlignment="CENTER" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="26.0" layoutY="653.0" text="Bet:                     € " textAlignment="CENTER" textFill="#d4af37">
+      <Label layoutX="26.0" layoutY="653.0" text="Bet: " textAlignment="CENTER" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>
       </Label>
-      <TextField fx:id="betAmount" alignment="TOP_RIGHT" layoutX="64.0" layoutY="643.0" prefHeight="43.0" prefWidth="188.0" style="-fx-background-color: transpaent; -fx-text-fill: #d4af37;" text="0.01">
+      <TextField fx:id="betAmount" alignment="TOP_LEFT" layoutX="70.0" layoutY="643.0" prefHeight="51.0" prefWidth="174.0" style="-fx-background-color: transpaent; -fx-text-fill: #d4af37;" text="0.01">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>
@@ -129,6 +129,14 @@
          </image>
       </ImageView>
       <Button alignment="CENTER" layoutX="853.0" layoutY="610.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Spin" textAlignment="CENTER" textFill="#d4af37">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="825.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToSlotStats" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: #1a3a30;" text="View slot stats" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>

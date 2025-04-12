@@ -1,0 +1,11 @@
+[
+  {
+    "username": "abc",
+    "password": "123456",
+    "balance": 0.0,
+    "remainingSpins": 0,
+    "biggestBet": 0.0,
+    "biggestWin": 0.0,
+    "registrationDate": "2025-04-12"
+  }
+]

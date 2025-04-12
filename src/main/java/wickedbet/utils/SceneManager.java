@@ -44,4 +44,12 @@ public class SceneManager {
     public void switchToLeaderboard(ActionEvent event) throws IOException {
         switchScene("leaderboard.fxml", event);
     }
+
+    public void switchToAddBalance(ActionEvent event) throws IOException {
+        switchScene("addbalance.fxml", event);
+    }
+
+    public void switchToSlotStats(ActionEvent event) throws IOException {
+        switchScene("slotstats.fxml", event);
+    }
 }
