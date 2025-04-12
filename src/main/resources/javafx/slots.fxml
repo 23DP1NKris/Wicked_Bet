@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a291f" height="510.0" layoutX="244.0" layoutY="104.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="553.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a291f" height="510.0" layoutX="236.0" layoutY="103.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="553.0" />
       <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="896.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/icon_yellow.png" />
@@ -49,7 +49,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Circle>
-      <Button layoutX="41.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToAddBalance" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: #1a3a30;" text="Top up your balance!" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
+      <Button layoutX="33.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToAddBalance" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: #1a3a30;" text="Top up your balance!" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -67,7 +67,7 @@
             <Font name="Arial Bold" size="28.0" />
          </font>
       </Label>
-      <TextField fx:id="betAmount" alignment="TOP_LEFT" layoutX="70.0" layoutY="643.0" prefHeight="51.0" prefWidth="174.0" style="-fx-background-color: transpaent; -fx-text-fill: #d4af37;" text="0.10">
+      <TextField fx:id="betAmount" alignment="TOP_LEFT" layoutX="70.0" layoutY="643.0" prefHeight="51.0" prefWidth="150.0" style="-fx-background-color: transpaent; -fx-text-fill: #d4af37;" text="0.10">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>
@@ -75,7 +75,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Button fx:id="changeBetButton" layoutX="170.0" layoutY="688.0" mnemonicParsing="false" onAction="#changeBet" style="-fx-background-color: #2a4a40;" text="Change bet" textFill="#d4af37">
+      <Button fx:id="changeBetButton" layoutX="63.0" layoutY="684.0" mnemonicParsing="false" onAction="#changeBet" style="-fx-background-color: #2a4a40;" text="Change bet" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
@@ -83,47 +83,47 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="slot_1" fitHeight="150.0" fitWidth="150.0" layoutX="287.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_1" fitHeight="150.0" fitWidth="150.0" layoutX="278.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_a.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="slot_2" fitHeight="150.0" fitWidth="150.0" layoutX="447.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_2" fitHeight="150.0" fitWidth="150.0" layoutX="438.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_broom.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="slot_3" fitHeight="150.0" fitWidth="150.0" layoutX="606.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_3" fitHeight="150.0" fitWidth="150.0" layoutX="597.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_candy.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="slot_4" fitHeight="150.0" fitWidth="150.0" layoutX="287.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_4" fitHeight="150.0" fitWidth="150.0" layoutX="278.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_eye.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="slot_5" fitHeight="150.0" fitWidth="150.0" layoutX="447.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_5" fitHeight="150.0" fitWidth="150.0" layoutX="438.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_free.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="slot_6" fitHeight="150.0" fitWidth="150.0" layoutX="606.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_6" fitHeight="150.0" fitWidth="150.0" layoutX="597.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_horseshoe.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="slot_9" fitHeight="150.0" fitWidth="150.0" layoutX="606.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_9" fitHeight="150.0" fitWidth="150.0" layoutX="597.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_pot.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="slot_8" fitHeight="150.0" fitWidth="150.0" layoutX="447.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_8" fitHeight="150.0" fitWidth="150.0" layoutX="438.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_witch.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="slot_7" fitHeight="150.0" fitWidth="150.0" layoutX="287.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="slot_7" fitHeight="150.0" fitWidth="150.0" layoutX="278.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_k.png" />
          </image>
@@ -136,7 +136,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="825.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToSlotStats" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: #1a3a30;" text="View slot stats" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
+      <Button layoutX="822.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToSlotStats" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: #1a3a30;" text="View slot stats" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>

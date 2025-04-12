@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import wickedbet.alerts.UserAlerts;
 import wickedbet.models.User;
+import wickedbet.services.BetService;
 import wickedbet.services.UserSessionService;
 import wickedbet.utils.SceneManager;
 import wickedbet.services.SpinService;
@@ -15,6 +17,8 @@ import java.io.IOException;
 public class SlotsController {
     private final SceneManager sceneManager = new SceneManager();
     private final UserSessionService userSessionService = UserSessionService.getInstance();
+    private final UserAlerts betAlerts = new UserAlerts();
+    private final BetService betService = new BetService();
     private final SpinService spinService = new SpinService();
 
     private User currentUser;
@@ -26,7 +30,8 @@ public class SlotsController {
     @FXML
     private Label balanceLabel;
 
-    private double bet = 0.10;
+
+    public double bet = 0.10;
 
     @FXML
     public void initialize() {
@@ -60,17 +65,26 @@ public class SlotsController {
     }
 
     public void changeBet(ActionEvent event) {
-        this.bet = Double.parseDouble(betAmount.getText().trim());
-        System.out.println("Bet updated: " + bet);
+        String inputBet = betAmount.getText().trim();
+        double balance = currentUser.getBalance();
 
-        javafx.application.Platform.runLater(() -> {
-            changeBetButton.setVisible(false);
-            changeBetButton.setManaged(false);
-        });
+        if (betService.validationCheck(inputBet, balance)) {
+            this.bet = Double.parseDouble(inputBet);
+            System.out.println("New bet: " + bet); // New bet: x (not lower than 0.1 and not higher than the user's bal)
+
+            javafx.application.Platform.runLater(() -> {
+                changeBetButton.setVisible(false);
+                changeBetButton.setManaged(false);
+            });
+        }
     }
 
     public void startSpin(ActionEvent event) throws IOException {
-        System.out.println("Starting spin with bet: " + bet);
+        if (currentUser.getBalance() < bet) {
+            betAlerts.showAlert("Not enough balance", "You don't have enough balance to place this bet!");
+            return;
+        }
+
         spinService.spin(bet);
     }
 }

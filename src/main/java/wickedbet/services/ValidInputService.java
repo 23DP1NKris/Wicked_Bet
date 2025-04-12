@@ -28,4 +28,12 @@ public class ValidInputService {
     public boolean passwordLength(String password) {
         return password.length() < 6;
     }
+
+    public static boolean validInputs(String inputBet) {
+        return !Pattern.matches("^\\d+(\\.\\d{1,2})?$", inputBet);
+    }
+
+    public static boolean emptyInputs(String inputBet) {
+        return inputBet == null || inputBet.isEmpty();
+    }
 }
