@@ -7,9 +7,11 @@ public class RegisterService {
     private final JsonService jsonService = new JsonService();
     private final ValidInputService validInputService = new ValidInputService();
     private final UserAlerts registerAlerts = new UserAlerts();
+    private final UserSessionService userSessionService = UserSessionService.getInstance();
 
     public void registerUser(User user) {
         jsonService.saveUser(user);
+        userSessionService.setLoggedIn(user);
     }
 
     public boolean validationCheck(String username, String password) {

@@ -8,7 +8,7 @@ public class User {
     private double balance;
     private double biggestBet;
     private double biggestWin;
-    private LocalDate registrationDate;
+    private final LocalDate registrationDate;
 
     public User(String username, String password) {
         this.username = username;

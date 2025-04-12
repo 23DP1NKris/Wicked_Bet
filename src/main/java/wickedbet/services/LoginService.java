@@ -9,6 +9,7 @@ public class LoginService {
     private final JsonService jsonService = new JsonService();
     private final UserAlerts loginAlerts = new UserAlerts();
     private final ValidInputService validInputService = new ValidInputService();
+    private final UserSessionService userSessionService = UserSessionService.getInstance();
 
     public boolean loginUser(String username, String password) {
         if (!validationCheck(username, password)) {
@@ -18,6 +19,7 @@ public class LoginService {
         List<User> users = jsonService.loadUsers();
         for (User user : users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                userSessionService.setLoggedIn(user);
                 return true;
             }
         }
