@@ -8,12 +8,14 @@ import javafx.scene.control.TextField;
 import wickedbet.models.User;
 import wickedbet.services.UserSessionService;
 import wickedbet.utils.SceneManager;
+import wickedbet.services.SpinService;
 
 import java.io.IOException;
 
 public class SlotsController {
     private final SceneManager sceneManager = new SceneManager();
     private final UserSessionService userSessionService = UserSessionService.getInstance();
+    private final SpinService spinService = new SpinService();
 
     private User currentUser;
 
@@ -24,11 +26,17 @@ public class SlotsController {
     @FXML
     private Label balanceLabel;
 
+    private double bet = 0.10;
+
     @FXML
     public void initialize() {
+        changeBetButton.setManaged(false);
         changeBetButton.setVisible(false);
-        betAmount.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            changeBetButton.setVisible(newVal);
+
+        betAmount.textProperty().addListener((obs, oldVal, newVal) -> {
+            boolean show = !newVal.trim().isEmpty();
+            changeBetButton.setManaged(show);
+            changeBetButton.setVisible(show);
         });
 
         currentUser = userSessionService.getLoggedIn();
@@ -49,5 +57,20 @@ public class SlotsController {
 
     private void updateBalanceLabel() {
         balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance()));
+    }
+
+    public void changeBet(ActionEvent event) {
+        this.bet = Double.parseDouble(betAmount.getText().trim());
+        System.out.println("Bet updated: " + bet);
+
+        javafx.application.Platform.runLater(() -> {
+            changeBetButton.setVisible(false);
+            changeBetButton.setManaged(false);
+        });
+    }
+
+    public void startSpin(ActionEvent event) throws IOException {
+        System.out.println("Starting spin with bet: " + bet);
+        spinService.spin(bet);
     }
 }

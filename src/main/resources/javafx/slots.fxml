@@ -67,7 +67,7 @@
             <Font name="Arial Bold" size="28.0" />
          </font>
       </Label>
-      <TextField fx:id="betAmount" alignment="TOP_LEFT" layoutX="70.0" layoutY="643.0" prefHeight="51.0" prefWidth="174.0" style="-fx-background-color: transpaent; -fx-text-fill: #d4af37;" text="0.01">
+      <TextField fx:id="betAmount" alignment="TOP_LEFT" layoutX="70.0" layoutY="643.0" prefHeight="51.0" prefWidth="174.0" style="-fx-background-color: transpaent; -fx-text-fill: #d4af37;" text="0.10">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>
@@ -75,7 +75,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Button fx:id="changeBetButton" layoutX="170.0" layoutY="688.0" mnemonicParsing="false" style="-fx-background-color: #2a4a40;" text="Change bet" textFill="#d4af37">
+      <Button fx:id="changeBetButton" layoutX="170.0" layoutY="688.0" mnemonicParsing="false" onAction="#changeBet" style="-fx-background-color: #2a4a40;" text="Change bet" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
@@ -128,7 +128,7 @@
             <Image url="@images/slots_images/slot_k.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" layoutX="853.0" layoutY="610.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Spin" textAlignment="CENTER" textFill="#d4af37">
+      <Button alignment="CENTER" layoutX="853.0" layoutY="610.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startSpin" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Spin" textAlignment="CENTER" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>

@@ -10,5 +10,6 @@ public class StatisticsController {
 
     public void goBack(ActionEvent event) throws IOException {
         sceneManager.switchToMenu(event);
+
     }
 }
