@@ -55,4 +55,15 @@ public class JsonService {
             e.printStackTrace();
         }
     }
+
+    public void saveUserUpdate(User updatedUser) {
+        List<User> users = loadUsers();
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equals(updatedUser.getUsername())) {
+                users.set(i, updatedUser);
+                break;
+            }
+        }
+        writeUsersToFile(users);
+    }
 }

@@ -15,7 +15,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.balance = 0.0;
-        this.remainingSpins = 0;
+        this.remainingSpins = 10;
         this.biggestBet = 0.0;
         this.biggestWin = 0.0;
         this.registrationDate = LocalDate.now();

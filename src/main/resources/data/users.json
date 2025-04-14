@@ -2,7 +2,25 @@
   {
     "username": "abc",
     "password": "123456",
-    "balance": 15.0,
+    "balance": 30.0,
+    "remainingSpins": 0,
+    "biggestBet": 0.1,
+    "biggestWin": 0.0,
+    "registrationDate": "2025-04-12"
+  },
+  {
+    "username": "1",
+    "password": "1",
+    "balance": 2200.0,
+    "remainingSpins": 0,
+    "biggestBet": 20.0,
+    "biggestWin": 0.0,
+    "registrationDate": "2025-04-12"
+  },
+  {
+    "username": "2",
+    "password": "2",
+    "balance": 1610.0,
     "remainingSpins": 0,
     "biggestBet": 0.0,
     "biggestWin": 0.0,

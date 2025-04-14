@@ -85,6 +85,7 @@ public class SlotsController {
             return;
         }
 
+        betService.biggestBet(bet);
         spinService.spin(bet);
     }
 }
