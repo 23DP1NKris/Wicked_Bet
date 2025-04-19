@@ -49,7 +49,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Circle>
-      <Button layoutX="33.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToAddBalance" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: #1a3a30;" text="Top up your balance!" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
+      <Button layoutX="32.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToAddBalance" prefHeight="80.0" prefWidth="175.0" style="-fx-background-color: #1a3a30;" text="Top up your balance!" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
@@ -136,7 +136,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="822.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToSlotStats" prefHeight="79.0" prefWidth="173.0" style="-fx-background-color: #1a3a30;" text="View slot stats" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
+      <Button layoutX="820.0" layoutY="161.0" mnemonicParsing="false" onAction="#switchToSlotStats" prefHeight="80.0" prefWidth="175.0" style="-fx-background-color: #1a3a30;" text="View slot stats" textAlignment="CENTER" textFill="#d4af37" wrapText="true">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>

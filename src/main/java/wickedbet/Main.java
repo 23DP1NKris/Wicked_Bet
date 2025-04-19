@@ -19,7 +19,7 @@ public class Main extends Application {
         stage.getIcons().add(icon);   // adds an icon to the stage
         stage.setTitle("Wicked Bet"); // sets the title of the stage as "Wicked Bet"
         stage.setResizable(false);    // removes the resize property
-        stage.show();                 // shows the scene
+        stage.show();                 // shows the stage
     }
 
     public static void main(String[] args) {

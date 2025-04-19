@@ -10,6 +10,7 @@ import wickedbet.utils.SceneManager;
 
 import java.io.IOException;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class AddBalanceController {
     private final SceneManager sceneManager = new SceneManager();
@@ -32,32 +33,32 @@ public class AddBalanceController {
     }
 
     public void addFiveBalance(ActionEvent event) { // adds 5 euros to the balance
-        addBalance(5);
+        addBalance(BigDecimal.valueOf(5));
     }
 
     public void addTenBalance(ActionEvent event) { // adds 10 euros to the balance
-        addBalance(10);
+        addBalance(BigDecimal.valueOf(10));
     }
 
     public void addTwentyBalance(ActionEvent event) { // adds 20 euros to the balance
-        addBalance(20);
+        addBalance(BigDecimal.valueOf(20));
     }
 
     public void addFiftyBalance(ActionEvent event) { // adds 50 euros to the balance
-        addBalance(50);
+        addBalance(BigDecimal.valueOf(50));
     }
 
     public void addHundredBalance(ActionEvent event) { // adds 100 euros to the balance
-        addBalance(100);
+        addBalance(BigDecimal.valueOf(100));
     }
 
     public void resetBalance(ActionEvent event) { // sets the balance as 0
-        currentUser.setBalance(0); // sets the user's balance as 0
+        currentUser.setBalance(BigDecimal.ZERO); // sets the user's balance as 0
         updateBalanceLabel(); // updates the balance displayed on the scene
         saveUpdatedUser();  // saves the user to json
     }
 
-    private void addBalance(double amount) {
+    private void addBalance(BigDecimal amount) {
         if (currentUser != null) {
             currentUser.addBalance(amount); // adds the given amount of balance to the user
             updateBalanceLabel(); // updates the balance displayed on the scene
@@ -66,7 +67,7 @@ public class AddBalanceController {
     }
 
     private void updateBalanceLabel() {
-        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance())); // outputs the user's balance as "Balance: x €" with only 2 numbers after the separator
+        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance().doubleValue())); // outputs the user's balance as "Balance: x €" with only 2 numbers after the separator
     }
 
     // overwrites the user's object with new data in json

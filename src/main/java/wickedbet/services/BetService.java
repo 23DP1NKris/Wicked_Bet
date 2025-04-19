@@ -2,6 +2,7 @@ package wickedbet.services;
 
 import wickedbet.alerts.UserAlerts;
 import wickedbet.models.User;
+import java.math.BigDecimal;
 
 public class BetService {
     private final UserAlerts betAlerts = new UserAlerts();
@@ -9,7 +10,7 @@ public class BetService {
     private final UserSessionService userSessionService = UserSessionService.getInstance();
 
     // validation check (logic in ValidInputService)
-    public boolean validationCheck(String inputBet, double balance) {
+    public boolean validationCheck(String inputBet, BigDecimal balance) {
         if (ValidInputService.emptyInputs(inputBet)) {
             betAlerts.showAlert("Invalid input", "Your bet cannot be empty!");
             return false;
@@ -20,20 +21,20 @@ public class BetService {
             return false;
         }
 
-        double numericBet;
+        BigDecimal numericBet;
         try {
-            numericBet = Double.parseDouble(inputBet);
+            numericBet = new BigDecimal(inputBet);
         } catch (NumberFormatException e) {
             betAlerts.showAlert("Invalid input", "Bet must be a valid number (e.g. 1.50)!");
             return false;
         }
 
-        if (numericBet < 0.10) {
+        if (numericBet.compareTo(new BigDecimal("0.10")) < 0) {
             betAlerts.showAlert("Invalid bet", "The minimum bet is 0.10!");
             return false;
         }
 
-        if (numericBet > balance) {
+        if (numericBet.compareTo(balance) > 0) {
             betAlerts.showAlert("Invalid bet", "Your bet cannot be bigger than your balance!");
             return false;
         }
@@ -42,10 +43,10 @@ public class BetService {
     }
 
     // sets the user's biggest bet if the bet is bigger than the previous biggest one
-    public void biggestBet(Double bet) {
+    public void biggestBet(BigDecimal bet) {
         User currentUser = userSessionService.getLoggedIn();
 
-        if (bet > currentUser.getBiggestBet()) { // checks if the current bet is bigger than the user's biggest bet
+        if (bet.compareTo(currentUser.getBiggestBet()) > 0) { // checks if the current bet is bigger than the user's biggest bet
             currentUser.setBiggestBet(bet); // sets the user's biggest bet
             jsonService.saveUserUpdate(currentUser); // updates it in json
         }

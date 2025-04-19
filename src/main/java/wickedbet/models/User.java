@@ -1,24 +1,25 @@
 package wickedbet.models;
 
 import java.time.LocalDate;
+import java.math.BigDecimal;
 
 public class User {
     private String username;
     private String password;
-    private double balance;
+    private BigDecimal balance;
     private int remainingSpins;
-    private double biggestBet;
-    private double biggestWin;
+    private BigDecimal biggestBet;
+    private BigDecimal biggestWin;
     private final LocalDate registrationDate;
 
     // user constructor
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.balance = 0.0;
+        this.balance = BigDecimal.ZERO;
         this.remainingSpins = 10;
-        this.biggestBet = 0.0;
-        this.biggestWin = 0.0;
+        this.biggestBet = BigDecimal.ZERO;
+        this.biggestWin = BigDecimal.ZERO;
         this.registrationDate = LocalDate.now();
     }
 
@@ -33,22 +34,22 @@ public class User {
     }
 
     // returns the balance
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
     // sets the new balance
-    public void setBalance(double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
     // adds balance
-    public void addBalance(double addedBalance) {
-        this.balance += addedBalance;
+    public void addBalance(BigDecimal addedBalance) {
+        this.balance = this.balance.add(addedBalance);
     }
 
     // returns the biggestBet value
-    public double getBiggestBet() {
+    public BigDecimal getBiggestBet() {
         return biggestBet;
     }
 
@@ -63,17 +64,17 @@ public class User {
     }
 
     // sets the biggestBet
-    public void setBiggestBet(double biggestBet) {
+    public void setBiggestBet(BigDecimal biggestBet) {
         this.biggestBet = biggestBet;
     }
 
     // returns the biggestWin variable
-    public double getBiggestWin() {
+    public BigDecimal getBiggestWin() {
         return biggestWin;
     }
 
     // sets the biggestWin variable
-    public void setBiggestWin(double biggestWin) {
+    public void setBiggestWin(BigDecimal biggestWin) {
         this.biggestWin = biggestWin;
     }
 

@@ -20,6 +20,8 @@ import wickedbet.utils.SceneManager;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 public class SlotsController {
@@ -43,8 +45,8 @@ public class SlotsController {
     @FXML
     private Label spinsLabel;
 
-    public double bet = 0.10;
-    public double win;
+    public BigDecimal bet = new BigDecimal("0.10");
+    public BigDecimal win = BigDecimal.ZERO;
 
     private final String[] SYMBOL_NAMES = {"a", "broom", "candy", "eye", "free", "horseshoe", "k", "pot", "witch"};  // names of the slot icons that get added to slot_x.png
     private Image[] symbols;
@@ -105,12 +107,12 @@ public class SlotsController {
 
     // updates the balance label when called
     private void updateBalanceLabel() {
-        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance())); // formats the output
+        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance().doubleValue())); // formats the output
     }
 
     // updates the won label when called
     private void updateWonLabel() {
-        wonLabel.setText(String.format("Won: %.2f €", win)); // formats the output
+        wonLabel.setText(String.format("Won: %.2f €", win.doubleValue())); // formats the output
     }
 
     // updates the free spins label
@@ -121,10 +123,10 @@ public class SlotsController {
     // changes the bet variable
     public void changeBet(ActionEvent event) {
         String inputBet = betAmount.getText().trim(); // gets the bet as string from the text field and trims it
-        double balance = currentUser.getBalance();  // gets the user's balance
+        BigDecimal balance = currentUser.getBalance();  // gets the user's balance
 
         if (betService.validationCheck(inputBet, balance)) { // validation
-            this.bet = Double.parseDouble(inputBet); // parses the inputted bet from a string into a double
+            this.bet = new BigDecimal(inputBet); // parses the inputted bet from a string into a BigDecimal
 
             javafx.application.Platform.runLater(() -> { // delays the button becoming invisible before the actions are finished
                 // sets the button as invisible again
@@ -136,16 +138,16 @@ public class SlotsController {
 
     // starts the animation and math on button press
     public void startSpin(ActionEvent event)    {
-        if (currentUser.getBalance() < bet) { // checks if the user has enough balance to spin
+        if (currentUser.getBalance().compareTo(bet) < 0) { // checks if the user has enough balance to spin
             betAlerts.showAlert("Not enough balance", "You don't have enough balance to place this bet!");
             return;
         }
 
-        currentUser.setBalance(currentUser.getBalance() - bet); // removes the bet amount from the user's balance
+        currentUser.setBalance(currentUser.getBalance().subtract(bet)); // removes the bet amount from the user's balance
         currentUser.setRemainingSpins(currentUser.getRemainingSpins() - 1); // removes one of the 10 free spins
         jsonService.saveUserUpdate(currentUser);    // updates both balance and remaining spins in json
-        updateBalanceLabel();   // updates the balance displayed on screen after clicking spin
-        updateSpinsLabel();
+        updateBalanceLabel();   // updates the balance on the scene after clicking spin
+        updateSpinsLabel(); // updates the remaining free spins on the scene after clicking spin
 
         betService.biggestBet(bet); // updates user's biggest bet stat
         startSpinAnimation();   // calls the spin animation to be shown on screen
