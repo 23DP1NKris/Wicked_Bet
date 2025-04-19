@@ -108,6 +108,16 @@
             <Image url="@images/slots_images/slot_free.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="slot_7" fitHeight="150.0" fitWidth="150.0" layoutX="278.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_k.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slot_8" fitHeight="150.0" fitWidth="150.0" layoutX="438.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/slots_images/slot_witch.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="slot_6" fitHeight="150.0" fitWidth="150.0" layoutX="597.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_horseshoe.png" />
@@ -116,16 +126,6 @@
       <ImageView fx:id="slot_9" fitHeight="150.0" fitWidth="150.0" layoutX="597.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/slots_images/slot_pot.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="slot_8" fitHeight="150.0" fitWidth="150.0" layoutX="438.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/slots_images/slot_witch.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="slot_7" fitHeight="150.0" fitWidth="150.0" layoutX="278.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/slots_images/slot_k.png" />
          </image>
       </ImageView>
       <Button alignment="CENTER" layoutX="853.0" layoutY="610.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startSpin" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Spin" textAlignment="CENTER" textFill="#d4af37">

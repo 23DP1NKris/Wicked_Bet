@@ -2,28 +2,28 @@
   {
     "username": "abc",
     "password": "123456",
-    "balance": 30.0,
-    "remainingSpins": 0,
-    "biggestBet": 0.1,
+    "balance": 20.0,
+    "remainingSpins": 7,
+    "biggestBet": 10.0,
     "biggestWin": 0.0,
-    "registrationDate": "2025-04-12"
+    "registrationDate": "1939-09-01"
   },
   {
     "username": "1",
     "password": "1",
-    "balance": 2200.0,
-    "remainingSpins": 0,
-    "biggestBet": 20.0,
-    "biggestWin": 0.0,
+    "balance": 0.39999999999999925,
+    "remainingSpins": -404,
+    "biggestBet": 100.0,
+    "biggestWin": 1000.0,
     "registrationDate": "2025-04-12"
   },
   {
     "username": "2",
     "password": "2",
-    "balance": 1610.0,
-    "remainingSpins": 0,
-    "biggestBet": 0.0,
-    "biggestWin": 0.0,
+    "balance": 1610.2,
+    "remainingSpins": 8,
+    "biggestBet": 0.1,
+    "biggestWin": 0.2,
     "registrationDate": "2025-04-12"
   }
 ]
