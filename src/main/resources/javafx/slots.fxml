@@ -34,12 +34,12 @@
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a3a30" height="160.0" layoutY="610.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1024.0" />
-      <Label alignment="CENTER" layoutX="362.0" layoutY="625.0" prefHeight="43.0" prefWidth="316.0" text="Won: 0.00 €" textAlignment="CENTER" textFill="#d4af37">
+      <Label fx:id="wonLabel" alignment="CENTER" layoutX="362.0" layoutY="625.0" prefHeight="43.0" prefWidth="316.0" text="Won: 0.00 €" textAlignment="CENTER" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="378.0" layoutY="665.0" prefHeight="32.0" prefWidth="271.0" text="Free Spins: 10" textAlignment="CENTER" textFill="#d4af37">
+      <Label fx:id="spinsLabel" alignment="CENTER" layoutX="378.0" layoutY="665.0" prefHeight="32.0" prefWidth="271.0" text="Free Spins: 10" textAlignment="CENTER" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>

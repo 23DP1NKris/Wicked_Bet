@@ -38,6 +38,10 @@ public class SlotsController {
     private Button changeBetButton;
     @FXML
     private Label balanceLabel;
+    @FXML
+    private Label wonLabel;
+    @FXML
+    private Label spinsLabel;
 
     public double bet = 0.10;
     public double win;
@@ -63,6 +67,7 @@ public class SlotsController {
 
         currentUser = userSessionService.getLoggedIn();
         updateBalanceLabel();
+        updateSpinsLabel();
 
         // loads all images from the resource folder using SYMBOL_NAMES
         symbols = new Image[SYMBOL_NAMES.length];
@@ -96,6 +101,14 @@ public class SlotsController {
         balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance()));
     }
 
+    private void updateWonLabel() {
+        wonLabel.setText(String.format("Won: %.2f €", win));
+    }
+
+    private void updateSpinsLabel() {
+        spinsLabel.setText("Free spins: " + currentUser.getRemainingSpins());
+    }
+
     public void changeBet(ActionEvent event) {
         String inputBet = betAmount.getText().trim();
         double balance = currentUser.getBalance();
@@ -121,6 +134,7 @@ public class SlotsController {
         currentUser.setRemainingSpins(currentUser.getRemainingSpins() - 1); // removes one of the 10 free spins
         jsonService.saveUserUpdate(currentUser);    // updates both balance and remaining spins in json
         updateBalanceLabel();   // updates the balance displayed on screen after clicking spin
+        updateSpinsLabel();
 
         betService.biggestBet(bet); // updates user's biggest bet stat
         startSpinAnimation();   // calls the spin animation to be shown on screen
@@ -138,6 +152,7 @@ public class SlotsController {
             win = spinService.calculateWin(bet, stopIndices, SYMBOL_NAMES);    // calculates the amount won (math in SpinService)
             spinService.updateUserBalance(win);   // adds the money won to the balance
             updateBalanceLabel();   // updates the balance displayed on the screen
+            updateWonLabel();
             spinService.biggestWin(win);  // updates the biggestWin variable
         })).play();
     }
