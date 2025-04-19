@@ -10,10 +10,11 @@ public class RegisterService {
     private final UserSessionService userSessionService = UserSessionService.getInstance();
 
     public void registerUser(User user) {
-        jsonService.saveUser(user);
-        userSessionService.setLoggedIn(user);
+        jsonService.saveUser(user); // saves the user
+        userSessionService.setLoggedIn(user); // sets the user as online
     }
 
+    // validation check (logic in ValidInputService)
     public boolean validationCheck(String username, String password) {
         if (validInputService.emptyInputs(username, password)) {
             registerAlerts.showAlert("Invalid input", "Username or password fields cannot be empty!");

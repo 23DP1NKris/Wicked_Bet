@@ -9,6 +9,7 @@ public class SpinService {
     double win;
 
     public double calculateWin(double bet, int[] reelStops, String[] symbols) {
+        // gets all the slots as slot1, slot2, ..., slot9
         String slot1 = symbols[reelStops[0] % symbols.length];       // (1,1)
         String slot2 = symbols[reelStops[1] % symbols.length];       // (1,2)
         String slot3 = symbols[reelStops[2] % symbols.length];       // (1,3)
@@ -34,6 +35,7 @@ public class SpinService {
         return (double) Math.round(win * 100) / 100;
     }
 
+    // updates the user's balance
     public void updateUserBalance(double win) {
         User currentUser = userSessionService.getLoggedIn();    // gets the active user
         currentUser.addBalance(win);                            // adds balance according to the amount won

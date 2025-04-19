@@ -19,15 +19,16 @@ public class LoginController {
     private final SceneManager sceneManager = new SceneManager();
 
     public void login(ActionEvent event) throws IOException {
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText().trim();
+        String username = usernameField.getText().trim(); // gets the username from the text field and trims it
+        String password = passwordField.getText().trim(); // gets the password from the password field and trims it
 
+        // if the validation and credentials are valid the user gets logged in
         if (loginService.loginUser(username, password)) {
-            sceneManager.switchToMenu(event);
+            sceneManager.switchToMenu(event); // switches to the menu scene
         }
     }
 
-    @FXML
+    @FXML // switches to the register scene
     private void switchToRegister(ActionEvent event) throws IOException {
         sceneManager.switchToRegister(event);
     }

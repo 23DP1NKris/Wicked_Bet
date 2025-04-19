@@ -8,7 +8,7 @@ import java.io.IOException;
 public class LeaderboardController {
     private final SceneManager sceneManager = new SceneManager();
 
-    public void goBack(ActionEvent event) throws IOException {
+    public void goBack(ActionEvent event) throws IOException { //
         sceneManager.switchToMenu(event);
     }
 }

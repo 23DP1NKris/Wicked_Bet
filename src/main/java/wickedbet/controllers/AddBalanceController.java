@@ -23,60 +23,61 @@ public class AddBalanceController {
 
     @FXML
     public void initialize() {
-        currentUser = userSessionService.getLoggedIn();
-        updateBalanceLabel();
+        currentUser = userSessionService.getLoggedIn(); // creates an object of the online user
+        updateBalanceLabel(); // shows the initial balance
     }
 
-    public void goBack(ActionEvent event) throws IOException {
+    public void goBack(ActionEvent event) throws IOException { // goes back to the slots scene
         sceneManager.switchToSlots(event);
     }
 
-    public void addFiveBalance(ActionEvent event) {
+    public void addFiveBalance(ActionEvent event) { // adds 5 euros to the balance
         addBalance(5);
     }
 
-    public void addTenBalance(ActionEvent event) {
+    public void addTenBalance(ActionEvent event) { // adds 10 euros to the balance
         addBalance(10);
     }
 
-    public void addTwentyBalance(ActionEvent event) {
+    public void addTwentyBalance(ActionEvent event) { // adds 20 euros to the balance
         addBalance(20);
     }
 
-    public void addFiftyBalance(ActionEvent event) {
+    public void addFiftyBalance(ActionEvent event) { // adds 50 euros to the balance
         addBalance(50);
     }
 
-    public void addHundredBalance(ActionEvent event) {
+    public void addHundredBalance(ActionEvent event) { // adds 100 euros to the balance
         addBalance(100);
     }
 
-    public void resetBalance(ActionEvent event) {
-        currentUser.setBalance(0);
-        updateBalanceLabel();
-        saveUpdatedUser();
+    public void resetBalance(ActionEvent event) { // sets the balance as 0
+        currentUser.setBalance(0); // sets the user's balance as 0
+        updateBalanceLabel(); // updates the balance displayed on the scene
+        saveUpdatedUser();  // saves the user to json
     }
 
     private void addBalance(double amount) {
         if (currentUser != null) {
-            currentUser.addBalance(amount);
-            updateBalanceLabel();
-            saveUpdatedUser();
+            currentUser.addBalance(amount); // adds the given amount of balance to the user
+            updateBalanceLabel(); // updates the balance displayed on the scene
+            saveUpdatedUser(); // saves the user to json
         }
     }
 
     private void updateBalanceLabel() {
-        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance()));
+        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance())); // outputs the user's balance as "Balance: x €" with only 2 numbers after the separator
     }
 
+    // overwrites the user's object with new data in json
     private void saveUpdatedUser() {
-        List<User> users = jsonService.loadUsers();
+        List<User> users = jsonService.loadUsers(); // loads all users from json into a list
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUsername().equals(currentUser.getUsername())) {
-                users.set(i, currentUser);
+            if (users.get(i).getUsername().equals(currentUser.getUsername())) {  // checks the online user's object in json
+                users.set(i, currentUser); // selects the user
                 break;
             }
         }
-        jsonService.writeUsersToFile(users);
+        jsonService.writeUsersToFile(users); // writes the user in json
     }
 }

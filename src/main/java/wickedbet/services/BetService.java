@@ -8,6 +8,7 @@ public class BetService {
     private final JsonService jsonService = new JsonService();
     private final UserSessionService userSessionService = UserSessionService.getInstance();
 
+    // validation check (logic in ValidInputService)
     public boolean validationCheck(String inputBet, double balance) {
         if (ValidInputService.emptyInputs(inputBet)) {
             betAlerts.showAlert("Invalid input", "Your bet cannot be empty!");
@@ -40,12 +41,13 @@ public class BetService {
         return true;
     }
 
+    // sets the user's biggest bet if the bet is bigger than the previous biggest one
     public void biggestBet(Double bet) {
         User currentUser = userSessionService.getLoggedIn();
 
-        if (bet > currentUser.getBiggestBet()) {
-            currentUser.setBiggestBet(bet);
-            jsonService.saveUserUpdate(currentUser);
+        if (bet > currentUser.getBiggestBet()) { // checks if the current bet is bigger than the user's biggest bet
+            currentUser.setBiggestBet(bet); // sets the user's biggest bet
+            jsonService.saveUserUpdate(currentUser); // updates it in json
         }
     }
 }

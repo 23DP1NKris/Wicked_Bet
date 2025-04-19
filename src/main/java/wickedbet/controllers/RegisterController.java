@@ -20,19 +20,21 @@ public class RegisterController {
     private final RegisterService registerService = new RegisterService();
     private final SceneManager sceneManager = new SceneManager();
 
+    // switches to the login scene
     public void switchToLogin(ActionEvent event) throws IOException {
         sceneManager.switchToLogin(event);
     }
 
+    // registers
     public void register(ActionEvent event) throws IOException {
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText().trim();
+        String username = usernameField.getText().trim(); // gets the username from the text field and trims it
+        String password = passwordField.getText().trim(); // gets the password from the password field and trims it
 
-        if (registerService.validationCheck(username, password)) {
-            User registeredUser = new User(username, password);
-            registerService.registerUser(registeredUser);
+        if (registerService.validationCheck(username, password)) { // validation
+            User registeredUser = new User(username, password); // creates a temporary object with the password and username
+            registerService.registerUser(registeredUser); // registers the user
 
-            sceneManager.switchToMenu(event);
+            sceneManager.switchToMenu(event); // switches to the menu scene
         }
     }
 }

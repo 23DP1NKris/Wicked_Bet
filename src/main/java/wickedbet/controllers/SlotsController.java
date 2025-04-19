@@ -56,23 +56,26 @@ public class SlotsController {
 
     @FXML
     public void initialize() {
+        // makes the "Change Bet" button invisible
         changeBetButton.setManaged(false);
         changeBetButton.setVisible(false);
 
+        // event listener that listens to the bet input being active
         betAmount.textProperty().addListener((obs, oldVal, newVal) -> {
             boolean show = !newVal.trim().isEmpty();
+            // sets the "Change Bet" button as visible
             changeBetButton.setManaged(show);
             changeBetButton.setVisible(show);
         });
 
         currentUser = userSessionService.getLoggedIn();
-        updateBalanceLabel();
-        updateSpinsLabel();
+        updateBalanceLabel(); // shows the initial user's balance
+        updateSpinsLabel();   // shows the remaining free spin amount on the scene
 
         // loads all images from the resource folder using SYMBOL_NAMES
         symbols = new Image[SYMBOL_NAMES.length];
         for (int i = 0; i < SYMBOL_NAMES.length; i++) {
-            String imagePath = "/javafx/images/slots_images/slot_" + SYMBOL_NAMES[i] + ".png";
+            String imagePath = "/javafx/images/slots_images/slot_" + SYMBOL_NAMES[i] + ".png"; // adds the image path to the symbol
             InputStream is = getClass().getResourceAsStream(imagePath);
             symbols[i] = new Image(is);
         }
@@ -85,47 +88,55 @@ public class SlotsController {
         );
     }
 
+    // switches to the menu scene
     public void goBack(ActionEvent event) throws IOException {
         sceneManager.switchToMenu(event);
     }
 
+    // switches to the add balance scene
     public void switchToAddBalance(ActionEvent event) throws IOException {
         sceneManager.switchToAddBalance(event);
     }
 
+    // switches to the slot stats scene
     public void switchToSlotStats(ActionEvent event) throws IOException {
         sceneManager.switchToSlotStats(event);
     }
 
+    // updates the balance label when called
     private void updateBalanceLabel() {
-        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance()));
+        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance())); // formats the output
     }
 
+    // updates the won label when called
     private void updateWonLabel() {
-        wonLabel.setText(String.format("Won: %.2f €", win));
+        wonLabel.setText(String.format("Won: %.2f €", win)); // formats the output
     }
 
+    // updates the free spins label
     private void updateSpinsLabel() {
         spinsLabel.setText("Free spins: " + currentUser.getRemainingSpins());
     }
 
+    // changes the bet variable
     public void changeBet(ActionEvent event) {
-        String inputBet = betAmount.getText().trim();
-        double balance = currentUser.getBalance();
+        String inputBet = betAmount.getText().trim(); // gets the bet as string from the text field and trims it
+        double balance = currentUser.getBalance();  // gets the user's balance
 
-        if (betService.validationCheck(inputBet, balance)) {
-            this.bet = Double.parseDouble(inputBet);
+        if (betService.validationCheck(inputBet, balance)) { // validation
+            this.bet = Double.parseDouble(inputBet); // parses the inputted bet from a string into a double
 
-            javafx.application.Platform.runLater(() -> {
+            javafx.application.Platform.runLater(() -> { // delays the button becoming invisible before the actions are finished
+                // sets the button as invisible again
                 changeBetButton.setVisible(false);
                 changeBetButton.setManaged(false);
             });
         }
     }
 
+    // starts the animation and math on button press
     public void startSpin(ActionEvent event)    {
-        // checks if the user has enough balance to spin
-        if (currentUser.getBalance() < bet) {
+        if (currentUser.getBalance() < bet) { // checks if the user has enough balance to spin
             betAlerts.showAlert("Not enough balance", "You don't have enough balance to place this bet!");
             return;
         }
@@ -148,11 +159,12 @@ public class SlotsController {
             animateReel(i, stopIndices[i]);
         }
 
+        // creates a timeline
         new Timeline(new KeyFrame(Duration.seconds(3), e -> {
             win = spinService.calculateWin(bet, stopIndices, SYMBOL_NAMES);    // calculates the amount won (math in SpinService)
             spinService.updateUserBalance(win);   // adds the money won to the balance
-            updateBalanceLabel();   // updates the balance displayed on the screen
-            updateWonLabel();
+            updateBalanceLabel();         // updates the balance displayed on the scene
+            updateWonLabel();             // shows the won amount in the scene
             spinService.biggestWin(win);  // updates the biggestWin variable
         })).play();
     }
@@ -177,7 +189,7 @@ public class SlotsController {
                 e -> updateReelImages(reel, stopIndex)
         ));
 
-        timeline.play();
+        timeline.play(); // plays the timeline
     }
 
     // displays/updates the images on the scene

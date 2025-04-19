@@ -16,27 +16,27 @@ import java.util.List;
 public class JsonService {
     private static final String FILE_PATH = "src/main/resources/data/users.json";
     private final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(java.time.LocalDate.class, new LocalDateAdapter())
-            .setPrettyPrinting()
+            .registerTypeAdapter(java.time.LocalDate.class, new LocalDateAdapter())  // uses an adapter for the registration date
+            .setPrettyPrinting() // makes the json look more readable
             .create();
 
     public void saveUser(User user) {
-        List<User> users = loadUsers();
-        users.add(user);
-        writeUsersToFile(users);
+        List<User> users = loadUsers(); // loads all users from the json file
+        users.add(user);    // adds the user to a list
+        writeUsersToFile(users); // writes the user to json
     }
 
     public List<User> loadUsers() {
         try {
             Path path = Paths.get(FILE_PATH);
 
-            if (!Files.exists(path)) {
+            if (!Files.exists(path)) { // if the file doesn't exist it creates one
                 Files.createDirectories(path.getParent());
                 Files.createFile(path);
                 return new ArrayList<>();
             }
 
-            try (Reader reader = new FileReader(path.toFile())) {
+            try (Reader reader = new FileReader(path.toFile())) { // reads the file
                 Type userListType = new TypeToken<ArrayList<User>>() {}.getType();
                 List<User> users = gson.fromJson(reader, userListType);
                 return (users != null) ? users : new ArrayList<>();
@@ -44,13 +44,14 @@ public class JsonService {
 
         } catch (IOException e) {
             e.printStackTrace();
-            return new ArrayList<>();
+            return new ArrayList<>(); // in case of an error it creates a new array list
         }
     }
 
     public void writeUsersToFile(List<User> users) {
+        // writes the user to the given file
         try (Writer writer = new FileWriter(FILE_PATH)) {
-            gson.toJson(users, writer);
+            gson.toJson(users, writer); // writes the list of users to json
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,6 +65,6 @@ public class JsonService {
                 break;
             }
         }
-        writeUsersToFile(users);
+        writeUsersToFile(users); // writes the users to json
     }
 }
