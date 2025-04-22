@@ -21,7 +21,6 @@ import wickedbet.utils.SceneManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.*;
 
 public class SlotsController {
@@ -107,12 +106,12 @@ public class SlotsController {
 
     // updates the balance label when called
     private void updateBalanceLabel() {
-        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance().doubleValue())); // formats the output
+        balanceLabel.setText(String.format("Balance: %.2f €", currentUser.getBalance())); // formats the output
     }
 
     // updates the won label when called
     private void updateWonLabel() {
-        wonLabel.setText(String.format("Won: %.2f €", win.doubleValue())); // formats the output
+        wonLabel.setText(String.format("Won: %.2f €", win)); // formats the output
     }
 
     // updates the free spins label
@@ -137,20 +136,25 @@ public class SlotsController {
     }
 
     // starts the animation and math on button press
-    public void startSpin(ActionEvent event)    {
-        if (currentUser.getBalance().compareTo(bet) < 0) { // checks if the user has enough balance to spin
-            betAlerts.showAlert("Not enough balance", "You don't have enough balance to place this bet!");
-            return;
+    public void startSpin(ActionEvent event) {
+        if (currentUser.getRemainingSpins() > 0) {                                  // checks if the user has free spins left
+            bet = new BigDecimal("0.10");                                       // sets bet to 0.10 during free spin
+            currentUser.setRemainingSpins(currentUser.getRemainingSpins() - 1);     // deducts free spins by 1
+            jsonService.saveUserUpdate(currentUser);                                // updates spins in json
+            updateSpinsLabel();                                                     // updates the remaining free spins on the scene after clicking spin
+        } else {
+            if (currentUser.getBalance().doubleValue() < bet.doubleValue()) { // checks if the user has enough balance to spin
+                betAlerts.showAlert("Not enough balance", "You don't have enough balance to place this bet!");
+                return;
+            }
+
+            currentUser.setBalance(currentUser.getBalance().subtract(bet)); // removes the bet amount from the user's balance
+            jsonService.saveUserUpdate(currentUser);                        // updates balance in json
+            updateBalanceLabel();                                           // updates the balance on the scene after clicking spin
         }
 
-        currentUser.setBalance(currentUser.getBalance().subtract(bet)); // removes the bet amount from the user's balance
-        currentUser.setRemainingSpins(currentUser.getRemainingSpins() - 1); // removes one of the 10 free spins
-        jsonService.saveUserUpdate(currentUser);    // updates both balance and remaining spins in json
-        updateBalanceLabel();   // updates the balance on the scene after clicking spin
-        updateSpinsLabel(); // updates the remaining free spins on the scene after clicking spin
-
         betService.biggestBet(bet); // updates user's biggest bet stat
-        startSpinAnimation();   // calls the spin animation to be shown on screen
+        startSpinAnimation();       // calls the spin animation to be shown on screen
     }
 
     public void startSpinAnimation() {
@@ -165,9 +169,11 @@ public class SlotsController {
         new Timeline(new KeyFrame(Duration.seconds(3), e -> {
             win = spinService.calculateWin(bet, stopIndices, SYMBOL_NAMES);    // calculates the amount won (math in SpinService)
             spinService.updateUserBalance(win);   // adds the money won to the balance
-            updateBalanceLabel();         // updates the balance displayed on the scene
-            updateWonLabel();             // shows the won amount in the scene
-            spinService.biggestWin(win);  // updates the biggestWin variable
+            spinService.giveFreeSpins();          // gives free spins if the
+            updateBalanceLabel();                 // updates the balance displayed on the scene
+            updateSpinsLabel();                   // updates the remaining free spins on the scene
+            updateWonLabel();                     // shows the won amount in the scene
+            spinService.biggestWin(win);          // updates the biggestWin variable if the win is bigger
         })).play();
     }
 

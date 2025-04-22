@@ -9,6 +9,7 @@ public class SpinService {
     private final JsonService jsonService = new JsonService();
 
     BigDecimal win;
+    int wonFreeSpins;
 
     public BigDecimal calculateWin(BigDecimal bet, int[] reelStops, String[] symbols) {
         // makes all the slots into slot1, slot2, ..., slot9
@@ -34,7 +35,28 @@ public class SpinService {
             win = BigDecimal.ZERO; // resets the win back to 0 if none match
         }
 
+        // checks how many "free" symbols are visible
+        int freeSymbolCount = 0;
+        String[] allSlots = {slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9};
+        for (String s : allSlots) {
+            if (s.equals("free")) {
+                freeSymbolCount++;
+            }
+        }
+
+        if (freeSymbolCount >= 3) {
+            wonFreeSpins = 3; // 3 free spins
+        } else {
+            wonFreeSpins = 0; // resets the variable back to 0
+        }
+
         return win.setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public void giveFreeSpins() {
+        User currentUser = userSessionService.getLoggedIn();
+        currentUser.setRemainingSpins(currentUser.getRemainingSpins() + wonFreeSpins); // adds the free spins to the user object
+        jsonService.saveUserUpdate(currentUser);                                       // updates it in json
     }
 
     // updates the user's balance
