@@ -10,13 +10,13 @@ import wickedbet.utils.SceneManager;
 import java.io.IOException;
 
 public class LoginController {
+    private final LoginService loginService = new LoginService();
+    private final SceneManager sceneManager = new SceneManager();
+
     @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-
-    private final LoginService loginService = new LoginService();
-    private final SceneManager sceneManager = new SceneManager();
 
     public void login(ActionEvent event) throws IOException {
         String username = usernameField.getText().trim(); // gets the username from the text field and trims it
