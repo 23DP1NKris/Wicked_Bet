@@ -1,5 +1,6 @@
 package wickedbet.services;
 
+import wickedbet.models.SlotStats;
 import wickedbet.models.User;
 import java.math.BigDecimal;
 import java.math.RoundingMode;

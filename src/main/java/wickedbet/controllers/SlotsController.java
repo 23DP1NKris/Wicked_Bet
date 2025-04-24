@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import wickedbet.alerts.UserAlerts;
+import wickedbet.models.SlotStats;
 import wickedbet.models.User;
 import wickedbet.services.BetService;
 import wickedbet.services.JsonService;
@@ -30,6 +31,7 @@ public class SlotsController {
     private final BetService betService = new BetService();
     private final SpinService spinService = new SpinService();
     private final JsonService jsonService = new JsonService();
+    SlotStats stats = jsonService.loadSlotStats();
 
     private User currentUser;
 
@@ -38,11 +40,7 @@ public class SlotsController {
     @FXML
     private Button changeBetButton;
     @FXML
-    private Label balanceLabel;
-    @FXML
-    private Label wonLabel;
-    @FXML
-    private Label spinsLabel;
+    private Label balanceLabel, wonLabel, spinsLabel;
 
     public BigDecimal bet = new BigDecimal("0.10");
     public BigDecimal win = BigDecimal.ZERO;
@@ -151,6 +149,8 @@ public class SlotsController {
             currentUser.setBalance(currentUser.getBalance().subtract(bet)); // removes the bet amount from the user's balance
             jsonService.saveUserUpdate(currentUser);                        // updates balance in json
             updateBalanceLabel();                                           // updates the balance on the scene after clicking spin
+            stats.setTotalBet(stats.getTotalBet().add(bet));
+            jsonService.saveSlotStats(stats);
         }
 
         betService.biggestBet(bet); // updates user's biggest bet stat
@@ -174,6 +174,9 @@ public class SlotsController {
             updateSpinsLabel();                   // updates the remaining free spins on the scene
             updateWonLabel();                     // shows the won amount in the scene
             spinService.biggestWin(win);          // updates the biggestWin variable if the win is bigger
+            stats.setTotalSpins(stats.getTotalSpins() + 1);
+            stats.setTotalWin(stats.getTotalWin().add(win));
+            jsonService.saveSlotStats(stats);
         })).play();
     }
 

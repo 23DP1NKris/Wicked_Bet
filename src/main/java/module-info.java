@@ -3,6 +3,7 @@ module com.example.wickedbet {
     requires javafx.fxml;
     requires com.google.gson;
     requires java.desktop;
+    requires jdk.jartool;
 
     opens wickedbet.models to com.google.gson, javafx.fxml;
     opens wickedbet.controllers to javafx.fxml;

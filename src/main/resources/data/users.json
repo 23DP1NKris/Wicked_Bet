@@ -1,56 +1,20 @@
 [
   {
-    "username": "abc",
-    "password": "123456",
-    "balance": 20.0,
+    "username": "pork_jonathan",
+    "password": "TimCheeseisevil",
+    "balance": 0,
     "remainingSpins": 10,
-    "biggestBet": 10.0,
-    "biggestWin": 0.0,
-    "registrationDate": "1939-09-01"
+    "biggestBet": 0,
+    "biggestWin": 0,
+    "registrationDate": "2025-04-24"
   },
   {
-    "username": "1",
-    "password": "1",
-    "balance": 0.90,
-    "remainingSpins": 0,
-    "biggestBet": 1000.5,
-    "biggestWin": 5000.00,
-    "registrationDate": "2025-04-12"
-  },
-  {
-    "username": "2",
-    "password": "2",
-    "balance": 1.32,
-    "remainingSpins": 0,
-    "biggestBet": 0.1,
-    "biggestWin": 0.50,
-    "registrationDate": "2025-04-12"
-  },
-  {
-    "username": "sigmadamn",
-    "password": "123456",
-    "balance": 1.71,
-    "remainingSpins": 0,
-    "biggestBet": 0.15,
-    "biggestWin": 0.75,
-    "registrationDate": "2025-04-23"
-  },
-  {
-    "username": "m1rk",
-    "password": "GG200715hhj",
-    "balance": 1.11,
-    "remainingSpins": 2,
-    "biggestBet": 1,
-    "biggestWin": 1.50,
-    "registrationDate": "2025-04-23"
-  },
-  {
-    "username": "kozis",
-    "password": "reinis123",
-    "balance": 0.53,
-    "remainingSpins": 0,
-    "biggestBet": 0.20,
-    "biggestWin": 0.30,
-    "registrationDate": "2025-04-23"
+    "username": "xXjames12Xx",
+    "password": "123james",
+    "balance": 0,
+    "remainingSpins": 10,
+    "biggestBet": 0,
+    "biggestWin": 0,
+    "registrationDate": "2025-04-24"
   }
 ]
