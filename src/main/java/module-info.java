@@ -2,6 +2,7 @@ module com.example.wickedbet {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires java.desktop;
 
     opens wickedbet.models to com.google.gson, javafx.fxml;
     opens wickedbet.controllers to javafx.fxml;
