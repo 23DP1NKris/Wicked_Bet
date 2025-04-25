@@ -17,11 +17,11 @@ public class SlotStatsController {
     private Label totalSpinsLabel, totalBetsLabel, totalWonLabel;
 
     public void initialize() {
-        SlotStats stats = jsonService.loadSlotStats();
+        SlotStats stats = jsonService.loadSlotStats(); // loads the values of the stats object
 
-        totalSpinsLabel.setText(String.valueOf(stats.getTotalSpins()));
-        totalBetsLabel.setText(String.format("%.2f €", stats.getTotalBet()));
-        totalWonLabel.setText(String.format("%.2f €", stats.getTotalWin()));
+        totalSpinsLabel.setText(String.valueOf(stats.getTotalSpins())); // shows the total spins on the scene
+        totalBetsLabel.setText(String.format("%.2f €", stats.getTotalBet())); // shows the totalBet value on the scene
+        totalWonLabel.setText(String.format("%.2f €", stats.getTotalWin())); // shows the totalWin value on the scene
     }
 
     // switches to the slots scene

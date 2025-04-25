@@ -135,29 +135,35 @@ public class SlotsController {
 
     // starts the animation and math on button press
     public void startSpin(ActionEvent event) {
+        BigDecimal BetBeforeSpin = bet; // stores the user's chosen bet before anything happens
+        BigDecimal actualBetUsed;
+
         if (currentUser.getRemainingSpins() > 0) {                                  // checks if the user has free spins left
-            bet = new BigDecimal("0.10");                                       // sets bet to 0.10 during free spin
+            actualBetUsed = new BigDecimal("0.10");                             // sets bet to 0.10 during free spin
             currentUser.setRemainingSpins(currentUser.getRemainingSpins() - 1);     // deducts free spins by 1
             jsonService.saveUserUpdate(currentUser);                                // updates spins in json
             updateSpinsLabel();                                                     // updates the remaining free spins on the scene after clicking spin
         } else {
-            if (currentUser.getBalance().doubleValue() < bet.doubleValue()) { // checks if the user has enough balance to spin
+            actualBetUsed = BetBeforeSpin;                                  // use the real selected bet
+            if (currentUser.getBalance().compareTo(actualBetUsed) < 0) {            // checks if the user has enough balance to spin
                 betAlerts.showAlert("Not enough balance", "You don't have enough balance to place this bet!");
                 return;
             }
 
-            currentUser.setBalance(currentUser.getBalance().subtract(bet)); // removes the bet amount from the user's balance
-            jsonService.saveUserUpdate(currentUser);                        // updates balance in json
-            updateBalanceLabel();                                           // updates the balance on the scene after clicking spin
-            stats.setTotalBet(stats.getTotalBet().add(bet));
-            jsonService.saveSlotStats(stats);
+            currentUser.setBalance(currentUser.getBalance().subtract(actualBetUsed)); // removes the bet amount from the user's balance
+            jsonService.saveUserUpdate(currentUser);                                  // updates balance in json
+            updateBalanceLabel();                                                     // updates the balance on the scene after clicking spin
+            stats.setTotalBet(stats.getTotalBet().add(actualBetUsed));                // adds the total bet amount to the previous sum
+            jsonService.saveSlotStats(stats);                                         // updates the slot stats in json
         }
 
-        betService.biggestBet(bet); // updates user's biggest bet stat
-        startSpinAnimation();       // calls the spin animation to be shown on screen
+        betService.biggestBet(actualBetUsed); // updates user's biggest bet stat
+
+        // pass both the user's selected bet and the actual bet used in this spin
+        startSpinAnimation(BetBeforeSpin, actualBetUsed);
     }
 
-    public void startSpinAnimation() {
+    public void startSpinAnimation(BigDecimal userSelectedBet, BigDecimal actualBetUsed) {
         int[] stopIndices = new int[3];
         for (int i = 0; i < 3; i++) {
             // chooses which symbols will be output in the end
@@ -167,16 +173,20 @@ public class SlotsController {
 
         // creates a timeline
         new Timeline(new KeyFrame(Duration.seconds(3), e -> {
-            win = spinService.calculateWin(bet, stopIndices, SYMBOL_NAMES);    // calculates the amount won (math in SpinService)
+            win = spinService.calculateWin(actualBetUsed, stopIndices, SYMBOL_NAMES);    // calculates the amount won (math in SpinService)
             spinService.updateUserBalance(win);   // adds the money won to the balance
             spinService.giveFreeSpins();          // gives free spins if the
             updateBalanceLabel();                 // updates the balance displayed on the scene
             updateSpinsLabel();                   // updates the remaining free spins on the scene
             updateWonLabel();                     // shows the won amount in the scene
             spinService.biggestWin(win);          // updates the biggestWin variable if the win is bigger
-            stats.setTotalSpins(stats.getTotalSpins() + 1);
-            stats.setTotalWin(stats.getTotalWin().add(win));
-            jsonService.saveSlotStats(stats);
+            stats.setTotalSpins(stats.getTotalSpins() + 1);     // adds 1 to the totalSpins count
+            stats.setTotalWin(stats.getTotalWin().add(win));    // adds the win amount to the previous sum
+            jsonService.saveSlotStats(stats);                   // updates the slot stats in json
+
+            if (actualBetUsed.equals(new BigDecimal("0.10"))) { // only reset the bet back if the spin was a free spin
+                bet = userSelectedBet;  // restores user's original bet after free spin
+            }
         })).play();
     }
 
