@@ -2,8 +2,10 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -33,5 +35,51 @@
             <Font name="Arial Bold" size="72.0" />
          </font>
       </Text>
+      <TextField fx:id="minBiggestBet" layoutX="837.0" layoutY="262.0" prefHeight="26.0" prefWidth="69.0" promptText="Min" />
+      <Label alignment="CENTER" layoutX="836.0" layoutY="198.0" prefHeight="17.0" prefWidth="151.0" text="Filter" textAlignment="CENTER" textFill="#d4af37">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="836.0" layoutY="242.0" prefHeight="17.0" prefWidth="151.0" text="Biggest bet" textFill="#d4af37">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="836.0" layoutY="296.0" prefHeight="17.0" prefWidth="151.0" text="Biggest win" textFill="#d4af37">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="maxBiggestBet" layoutX="912.0" layoutY="262.0" prefHeight="26.0" prefWidth="69.0" promptText="Max" />
+      <TextField fx:id="minBiggestWin" layoutX="837.0" layoutY="316.0" prefHeight="26.0" prefWidth="69.0" promptText="Min" />
+      <TextField fx:id="maxBiggestWin" layoutX="912.0" layoutY="316.0" prefHeight="26.0" prefWidth="69.0" promptText="Max" />
+      <Button fx:id="filterButton" layoutX="888.0" layoutY="358.0" mnemonicParsing="false" onAction="#applyFilter" style="-fx-background-color: #1a3a30;" text="Filter" textFill="#d4af37">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="usernameSearch" layoutX="837.0" layoutY="477.0" prefHeight="26.0" prefWidth="152.0" promptText="Username" />
+      <Label alignment="CENTER" layoutX="836.0" layoutY="416.0" prefHeight="17.0" prefWidth="151.0" text="Search" textAlignment="CENTER" textFill="#d4af37">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="836.0" layoutY="457.0" prefHeight="17.0" prefWidth="151.0" text="Username" textFill="#d4af37">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="searchButton" layoutX="882.0" layoutY="515.0" mnemonicParsing="false" onAction="#applySearch" style="-fx-background-color: #1a3a30;" text="Search" textFill="#d4af37">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

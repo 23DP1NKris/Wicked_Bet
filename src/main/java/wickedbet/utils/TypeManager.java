@@ -8,13 +8,12 @@ import wickedbet.models.User;
 import java.util.List;
 
 public class TypeManager {
-    public ObservableList<LeaderboardUser> UserToLeaderboard(List<User> users) {
-        ObservableList<LeaderboardUser> leaderboardUsers = FXCollections.observableArrayList();
-
+    // puts all users into an ObservableList so it can be used in the table
+    public ObservableList<LeaderboardUser> toLeaderboard(List<User> users) {
+        ObservableList<LeaderboardUser> list = FXCollections.observableArrayList();
         for (User user : users) {
-            leaderboardUsers.add(new LeaderboardUser(user.getUsername(), user.getBiggestBet(), user.getBiggestWin()));
+            list.add(new LeaderboardUser(user.getUsername(), user.getBiggestBet(), user.getBiggestWin()));
         }
-
-        return leaderboardUsers;
+        return list;
     }
 }

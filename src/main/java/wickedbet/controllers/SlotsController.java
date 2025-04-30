@@ -144,7 +144,7 @@ public class SlotsController {
             jsonService.saveUserUpdate(currentUser);                                // updates spins in json
             updateSpinsLabel();                                                     // updates the remaining free spins on the scene after clicking spin
         } else {
-            actualBetUsed = BetBeforeSpin;                                  // use the real selected bet
+            actualBetUsed = BetBeforeSpin;                                          // use the real selected bet
             if (currentUser.getBalance().compareTo(actualBetUsed) < 0) {            // checks if the user has enough balance to spin
                 betAlerts.showAlert("Not enough balance", "You don't have enough balance to place this bet!");
                 return;
