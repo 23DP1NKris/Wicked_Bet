@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import wickedbet.alerts.UserAlerts;
 import wickedbet.models.LeaderboardUser;
 import wickedbet.models.User;
 import wickedbet.services.JsonService;
@@ -24,6 +25,7 @@ public class LeaderboardController implements Initializable {
     private final JsonService jsonService = new JsonService();
     private final TypeManager typeManager = new TypeManager();
     private final SceneManager sceneManager = new SceneManager();
+    private final UserAlerts userAlerts = new UserAlerts();
 
     @FXML
     private TableView<LeaderboardUser> leaderboard;
@@ -45,6 +47,7 @@ public class LeaderboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allUsers = jsonService.loadUsers(); // loads all users from json
 
+        // assigns the cell values
         usernameColumn.setCellValueFactory(cell -> cell.getValue().getUsernameProperty());
         biggestBetColumn.setCellValueFactory(cell -> cell.getValue().getBiggestBetProperty());
         biggestWinColumn.setCellValueFactory(cell -> cell.getValue().getBiggestWinProperty());
@@ -54,11 +57,19 @@ public class LeaderboardController implements Initializable {
     }
 
     public void applyFilter(ActionEvent event) {
-        // if there is no value to parse it gives it a default value
-        BigDecimal minBet = parseDecimalOrDefault(minBiggestBet.getText(), BigDecimal.ZERO);
-        BigDecimal maxBet = parseDecimalOrDefault(maxBiggestBet.getText(), null);
-        BigDecimal minWin = parseDecimalOrDefault(minBiggestWin.getText(), BigDecimal.ZERO);
-        BigDecimal maxWin = parseDecimalOrDefault(maxBiggestWin.getText(), null);
+        // parses inputs
+        BigDecimal minBet = parseDecimal(minBiggestBet.getText());
+        BigDecimal maxBet = parseDecimal(maxBiggestBet.getText());
+        BigDecimal minWin = parseDecimal(minBiggestWin.getText());
+        BigDecimal maxWin = parseDecimal(maxBiggestWin.getText());
+
+        // stops if any of the inputs were invalid
+        if ((minBet == null && !minBiggestBet.getText().isBlank()) ||
+                (maxBet == null && !maxBiggestBet.getText().isBlank()) ||
+                (minWin == null && !minBiggestWin.getText().isBlank()) ||
+                (maxWin == null && !maxBiggestWin.getText().isBlank())) {
+            return;
+        }
 
         // filters all the users
         List<User> filtered = allUsers.stream()
@@ -78,6 +89,11 @@ public class LeaderboardController implements Initializable {
             return;
         }
 
+        if (!searchedUsername.matches("^[a-zA-Z0-9_]*$")) {
+            userAlerts.showAlert("Invalid search", "Username search can only contain letters, numbers, or underscores.");
+            return;
+        }
+
         // searches for the user
         List<User> matched = allUsers.stream()
                 .filter(user -> user.getUsername().toLowerCase().contains(searchedUsername.toLowerCase()))
@@ -86,22 +102,34 @@ public class LeaderboardController implements Initializable {
         leaderboard.setItems(typeManager.toLeaderboard(matched));
     }
 
-    // parses the input or returns the default value
-    private BigDecimal parseDecimalOrDefault(String text, BigDecimal defaultValue) {
+    // parses the input string into BigDecimal or null if input is invalid
+    private BigDecimal parseDecimal(String text) {
         try {
             if (text == null || text.isBlank()) {
-                return defaultValue;
+                return null;
             }
 
-            return new BigDecimal(text.trim());
+            BigDecimal value = new BigDecimal(text.trim());
+
+            if (value.compareTo(BigDecimal.ZERO) < 0) {
+                userAlerts.showAlert("Invalid input", "The input cannot be negative.");
+                return null;
+            }
+
+            return value;
         } catch (NumberFormatException e) {
-            return defaultValue;
+            userAlerts.showAlert("Invalid input", "Input must be a valid number.");
+            return null;
         }
     }
 
     // helper method that checks if the values are within range
     private boolean withinRange(BigDecimal value, BigDecimal min, BigDecimal max) {
-        if (value.compareTo(min) < 0) {
+        if (value == null) {
+            return false;
+        }
+
+        if (min != null && value.compareTo(min) < 0) {
             return false;
         }
 
