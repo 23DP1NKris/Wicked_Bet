@@ -128,7 +128,7 @@
             <Image url="@images/slots_images/slot_pot.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" layoutX="853.0" layoutY="610.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startSpin" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Spin" textAlignment="CENTER" textFill="#d4af37">
+      <Button fx:id="spinButton" alignment="CENTER" layoutX="853.0" layoutY="610.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startSpin" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Spin" textAlignment="CENTER" textFill="#d4af37">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>

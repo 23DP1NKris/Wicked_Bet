@@ -38,7 +38,7 @@ public class SlotsController {
     @FXML
     private TextField betAmount;
     @FXML
-    private Button changeBetButton;
+    private Button changeBetButton, spinButton;
     @FXML
     private Label balanceLabel, wonLabel, spinsLabel;
 
@@ -135,6 +135,8 @@ public class SlotsController {
 
     // starts the animation and math on button press
     public void startSpin(ActionEvent event) {
+        spinButton.setDisable(true); // disables the spin button
+
         BigDecimal BetBeforeSpin = bet; // stores the user's chosen bet before anything happens
         BigDecimal actualBetUsed;
 
@@ -147,6 +149,7 @@ public class SlotsController {
             actualBetUsed = BetBeforeSpin;                                          // use the real selected bet
             if (currentUser.getBalance().compareTo(actualBetUsed) < 0) {            // checks if the user has enough balance to spin
                 betAlerts.showAlert("Not enough balance", "You don't have enough balance to place this bet!");
+                spinButton.setDisable(false); // enables the button if the user didn't have enough balance
                 return;
             }
 
@@ -187,6 +190,8 @@ public class SlotsController {
             if (actualBetUsed.equals(new BigDecimal("0.10"))) { // only reset the bet back if the spin was a free spin
                 bet = userSelectedBet;  // restores user's original bet after free spin
             }
+
+            spinButton.setDisable(false); // enables the spin button after the animation
         })).play();
     }
 

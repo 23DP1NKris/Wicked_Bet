@@ -13,9 +13,9 @@ import java.io.IOException;
 
 public class RegisterController {
     @FXML
-    private TextField usernameField;
+    public TextField usernameField;
     @FXML
-    private PasswordField passwordField;
+    public PasswordField passwordField;
 
     private final RegisterService registerService = new RegisterService();
     private final SceneManager sceneManager = new SceneManager();

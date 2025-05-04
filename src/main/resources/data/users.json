@@ -47,8 +47,8 @@
   {
     "username": "1",
     "password": "1",
-    "balance": 260.84,
-    "remainingSpins": 3,
+    "balance": 257.78,
+    "remainingSpins": 0,
     "biggestBet": 50,
     "biggestWin": 75.00,
     "registrationDate": "2025-04-24"
@@ -70,5 +70,23 @@
     "biggestBet": 1,
     "biggestWin": 0.15,
     "registrationDate": "2025-04-25"
+  },
+  {
+    "username": "valid",
+    "password": "pass",
+    "balance": 0,
+    "remainingSpins": 10,
+    "biggestBet": 0,
+    "biggestWin": 0,
+    "registrationDate": "2025-05-04"
+  },
+  {
+    "username": "Username",
+    "password": "1234567",
+    "balance": 611.39,
+    "remainingSpins": 0,
+    "biggestBet": 100,
+    "biggestWin": 250.00,
+    "registrationDate": "2025-05-04"
   }
 ]
