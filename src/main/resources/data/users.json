@@ -45,22 +45,13 @@
     "registrationDate": "2025-04-05"
   },
   {
-    "username": "1",
-    "password": "1",
-    "balance": 257.78,
-    "remainingSpins": 0,
-    "biggestBet": 50,
-    "biggestWin": 75.00,
-    "registrationDate": "2025-04-24"
-  },
-  {
     "username": "hubert7",
     "password": "iamhubert66",
     "balance": 1.68,
     "remainingSpins": 0,
     "biggestBet": 0.10,
     "biggestWin": 0.80,
-    "registrationDate": "2025-04-25"
+    "registrationDate": "2025-04-10"
   },
   {
     "username": "edvards99",
@@ -69,24 +60,33 @@
     "remainingSpins": 0,
     "biggestBet": 1,
     "biggestWin": 0.15,
-    "registrationDate": "2025-04-25"
+    "registrationDate": "2025-04-13"
   },
   {
-    "username": "valid",
-    "password": "pass",
-    "balance": 0,
+    "username": "STIRNAMUSIC",
+    "password": "jupiters",
+    "balance": 80.95,
+    "remainingSpins": 9,
+    "biggestBet": 0.10,
+    "biggestWin": 0.80,
+    "registrationDate": "2025-05-21"
+  },
+  {
+    "username": "adrianis",
+    "password": "kubikrubik",
+    "balance": 125,
     "remainingSpins": 10,
     "biggestBet": 0,
     "biggestWin": 0,
-    "registrationDate": "2025-05-04"
+    "registrationDate": "2025-05-25"
   },
   {
-    "username": "Username",
-    "password": "1234567",
-    "balance": 611.39,
+    "username": "kolasdzerajs99",
+    "password": "ilovecoke",
+    "balance": 800.82,
     "remainingSpins": 0,
-    "biggestBet": 100,
-    "biggestWin": 250.00,
-    "registrationDate": "2025-05-04"
+    "biggestBet": 160,
+    "biggestWin": 200,
+    "registrationDate": "2025-05-29"
   }
 ]
