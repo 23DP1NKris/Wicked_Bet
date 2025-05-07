@@ -25,6 +25,7 @@ public class ValidInputServiceTest {
                 return Collections.singletonList(user);
             }
         };
+
         Field field = ValidInputService.class.getDeclaredField("jsonService");
         field.setAccessible(true);
         field.set(service, stubJson);

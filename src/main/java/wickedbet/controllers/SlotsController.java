@@ -175,7 +175,7 @@ public class SlotsController {
         }
 
         // creates a timeline
-        new Timeline(new KeyFrame(Duration.seconds(3), e -> {
+        new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             win = spinService.calculateWin(actualBetUsed, stopIndices, SYMBOL_NAMES);    // calculates the amount won (math in SpinService)
             spinService.updateUserBalance(win);   // adds the money won to the balance
             spinService.giveFreeSpins();          // gives free spins if the

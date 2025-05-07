@@ -1,138 +1,99 @@
 package services_tests;
 
-import org.junit.jupiter.api.*;
-import wickedbet.controllers.RegisterController;
-import wickedbet.services.RegisterService;
-import wickedbet.utils.SceneManager;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import wickedbet.alerts.UserAlerts;
 import wickedbet.models.User;
-
-import javafx.event.ActionEvent;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+import wickedbet.services.RegisterService;
+import wickedbet.services.UserSessionService;
 
 import java.lang.reflect.Field;
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RegisterServiceTest {
+    private RegisterService svc;
 
-    private RegisterController controller;
-    private StubRegisterService stubRegisterService;
-    private StubSceneManager stubSceneManager;
-
-    @BeforeAll
-    static void initToolkit() {
-        javafx.application.Platform.startup(() -> {});
+    private static class SilentAlerts extends UserAlerts {
+        @Override
+        public void showAlert(String title, String message) {}
     }
 
-    private static class StubRegisterService extends RegisterService {
-        boolean validationResult = true;
-        User lastRegisteredUser = null;
-
-        @Override
-        public boolean validationCheck(String username, String password) {
-            return validationResult;
+    private void fakeAlerts(RegisterService target) throws Exception {
+        Field alertsField = null;
+        for (Field f : RegisterService.class.getDeclaredFields()) {
+            if (f.getType() == UserAlerts.class) {
+                alertsField = f;
+                break;
+            }
         }
-
-        @Override
-        public void registerUser(User user) {
-            lastRegisteredUser = user;
+        if (alertsField == null) {
+            throw new IllegalStateException("No UserAlerts field on RegisterService");
         }
-    }
-
-    private static class StubSceneManager extends SceneManager {
-        boolean switchedToLogin = false;
-        boolean switchedToMenu = false;
-
-        @Override
-        public void switchToLogin(ActionEvent event) {
-            switchedToLogin = true;
-        }
-
-        @Override
-        public void switchToMenu(ActionEvent event) {
-            switchedToMenu = true;
-        }
-    }
-
-    private void injectStubs() throws Exception {
-        Field regServiceField = RegisterController.class.getDeclaredField("registerService");
-        regServiceField.setAccessible(true);
-        regServiceField.set(controller, stubRegisterService);
-
-        Field sceneMgrField = RegisterController.class.getDeclaredField("sceneManager");
-        sceneMgrField.setAccessible(true);
-        sceneMgrField.set(controller, stubSceneManager);
+        alertsField.setAccessible(true);
+        alertsField.set(target, new SilentAlerts());
     }
 
     @BeforeEach
     void setUp() throws Exception {
-        controller = new RegisterController();
-        stubRegisterService = new StubRegisterService();
-        stubSceneManager = new StubSceneManager();
-
-        controller.usernameField = new TextField();
-        controller.passwordField = new PasswordField();
-
-        injectStubs();
+        UserSessionService.getInstance().setLoggedIn(null);
+        svc = new RegisterService();
+        fakeAlerts(svc);
     }
 
     @Test
-    void switchToLogin_SceneManager() throws IOException {
-        ActionEvent dummyEvent = new ActionEvent();
-        controller.switchToLogin(dummyEvent);
-        assertTrue(stubSceneManager.switchedToLogin, "Expected switchToLogin to call SceneManager.switchToLogin");
+    void registerUser_setsSessionAndDoesNotThrow() {
+        User user = new User("alice", "securePwd!");
+        assertNull(UserSessionService.getInstance().getLoggedIn());
+        svc.registerUser(user);
+        assertEquals(user, UserSessionService.getInstance().getLoggedIn());
     }
 
     @Test
-    void switchToLogin() throws IOException {
-        ActionEvent dummyEvent = new ActionEvent();
-        assertFalse(stubSceneManager.switchedToMenu);
-        controller.switchToLogin(dummyEvent);
-        assertFalse(stubSceneManager.switchedToMenu, "switchToLogin should not switch to menu");
+    void registerUser_overwritesPreviousSession() {
+        User user1 = new User("bob", "123456");
+        User user2 = new User("carol", "abcdef");
+        svc.registerUser(user1);
+        assertEquals(user1, UserSessionService.getInstance().getLoggedIn());
+        svc.registerUser(user2);
+        assertEquals(user2, UserSessionService.getInstance().getLoggedIn());
     }
 
     @Test
-    void register_withValidInput_registersAndSwitchesToMenu() throws IOException {
-        controller.usernameField.setText("alice");
-        controller.passwordField.setText("secret");
-        stubRegisterService.validationResult = true;
-
-        controller.register(new ActionEvent());
-
-        assertNotNull(stubRegisterService.lastRegisteredUser, "Expected registerUser to be called");
-        assertEquals("alice", stubRegisterService.lastRegisteredUser.getUsername());
-        assertEquals("secret", stubRegisterService.lastRegisteredUser.getPassword());
-        assertTrue(stubSceneManager.switchedToMenu, "Expected switchToMenu to be called on valid registration");
+    void validationCheck_rejectsEmptyUsername() {
+        boolean ok = svc.validationCheck("", "nonEmpty");
+        assertFalse(ok);
     }
 
     @Test
-    void register_withInvalidInput_doesNothing() throws IOException {
-        controller.usernameField.setText("bob");
-        controller.passwordField.setText("pwd");
-        stubRegisterService.validationResult = false;
-
-        controller.register(new ActionEvent());
-
-        assertNull(stubRegisterService.lastRegisteredUser, "Expected no call to registerUser");
-        assertFalse(stubSceneManager.switchedToMenu, "Expected no call to switchToMenu");
+    void validationCheck_rejectsEmptyPassword() {
+        boolean ok = svc.validationCheck("user", "");
+        assertFalse(ok);
     }
 
     @Test
-    void register_trimsFieldsBeforeValidation() throws Exception {
-        controller.usernameField.setText("john_pork ");
-        controller.passwordField.setText("pa$$w0rd");
-        stubRegisterService = new StubRegisterService() {
-            @Override
-            public boolean validationCheck(String username, String password) {
-                assertEquals("john_pork", username);
-                assertEquals("pa$$w0rd", password);
-                return false;
-            }
-        };
-        injectStubs();
+    void validationCheck_rejectsBadCharsInUsername() {
+        boolean ok = svc.validationCheck("invalid@@", "password");
+        assertFalse(ok);
+    }
 
-        controller.register(new ActionEvent());
+    @Test
+    void validationCheck_rejectsShortPassword() {
+        boolean ok = svc.validationCheck("validUser", "123");
+        assertFalse(ok);
+    }
+
+    @Test
+    void validationCheck_rejectsExistingUsername() {
+        User exists = new User("takenName", "password");
+        svc.registerUser(exists);
+        boolean ok = svc.validationCheck("takenName", "password");
+        assertFalse(ok);
+    }
+
+    @Test
+    void validationCheck_acceptsGoodInput() {
+        boolean ok = svc.validationCheck("newUser", "password");
+        assertTrue(ok);
     }
 }

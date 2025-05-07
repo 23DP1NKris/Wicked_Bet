@@ -1,11 +1,9 @@
 package services_tests;
 
 import org.junit.jupiter.api.*;
-import wickedbet.services.JsonService;
 import wickedbet.services.LoginService;
 import wickedbet.services.UserSessionService;
 import wickedbet.alerts.UserAlerts;
-import wickedbet.models.User;
 
 import java.lang.reflect.Field;
 
@@ -19,17 +17,19 @@ class LoginServiceTest {
         public void showAlert(String title, String message) {}
     }
 
-    private void stubAlerts(Object target) throws Exception {
+    private void fakeAlert(Object target) throws Exception {
         Field alertsField = null;
-        for (Field f : LoginService.class.getDeclaredFields()) {
-            if (f.getType() == UserAlerts.class) {
-                alertsField = f;
+        for (Field field : LoginService.class.getDeclaredFields()) {
+            if (field.getType() == UserAlerts.class) {
+                alertsField = field;
                 break;
             }
         }
+
         if (alertsField == null) {
             throw new IllegalStateException("No UserAlerts field on LoginService");
         }
+
         alertsField.setAccessible(true);
         alertsField.set(target, new SilentAlerts());
     }
@@ -37,17 +37,15 @@ class LoginServiceTest {
     @BeforeEach
     void setUp() throws Exception {
         loginService = new LoginService();
-        stubAlerts(loginService);
+        fakeAlert(loginService);
         UserSessionService.getInstance().setLoggedIn(null);
     }
 
     @Test
     void loginUser_ValidCredentials_ReturnsTrue() {
-        User u = new User("valid", "pass");
-        new JsonService().saveUser(u);
-        boolean ok = loginService.loginUser("valid", "pass");
+        boolean ok = loginService.loginUser("pork_jonathan", "TimCheeseisevil");
         assertTrue(ok);
-        assertEquals("valid", UserSessionService.getInstance().getLoggedIn().getUsername());
+        assertEquals("pork_jonathan", UserSessionService.getInstance().getLoggedIn().getUsername());
     }
 
     @Test
