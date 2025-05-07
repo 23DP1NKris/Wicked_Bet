@@ -27,7 +27,7 @@
 
 ---
 
-## 🖼️ Attēli no aplikācijas
+## 📷 Attēli no aplikācijas
 
 | Pieslēgšanās                                        | Spēle                                              | Statistika                                         |
 |-----------------------------------------------------|----------------------------------------------------|----------------------------------------------------|
@@ -66,7 +66,7 @@
 
 6. **Nomaini direktoriju**
    ```bash
-   cd <tava_izveleta_mape>/WickedBet
+   cd <tavas_izveletas_mapes>/WickedBet
    ```
    
 7. **Instalē projektu**
